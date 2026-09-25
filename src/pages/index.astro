@@ -1,0 +1,141 @@
+---
+import Base from "../layouts/Base.astro";
+import Section from "../components/Section.astro";
+import HeroArt from "../components/HeroArt.astro";
+import PartArt from "../components/PartArt.astro";
+import TableOfContents from "../components/TableOfContents.astro";
+import HeadcountStack from "../components/HeadcountStack.tsx";
+import { intro, meta, parts, promise, sources, takeAways } from "../content/guide";
+---
+
+<Base>
+  <!-- Mobile top nav: shows sections as pills -->
+  <nav class="top-nav" aria-label="Sections">
+    <div class="top-nav-inner">
+      {
+        parts.flatMap((part) =>
+          part.sections.map((s) => (
+            <a href={`#${s.id}`}>
+              {s.number}. {s.title}
+            </a>
+          ))
+        )
+      }
+    </div>
+  </nav>
+
+  <div class="wrap">
+    <section class="hero">
+      <div>
+        <span class="hero-kicker">Plum guide · Internal comms</span>
+        <h1 class="hero-title">{meta.title}</h1>
+        <p class="hero-tagline">{meta.tagline}</p>
+      </div>
+      <HeroArt />
+    </section>
+  </div>
+
+  <div class="wrap">
+    <div class="layout">
+      <TableOfContents />
+
+      <div class="editorial">
+        <section id="why" class="section" style="border-top: none; padding-top: 0;">
+          <header class="section-header">
+            <span class="section-number">§</span>
+            <h2 class="section-title">{intro.heading}</h2>
+          </header>
+          {intro.paragraphs.map((p) => <p>{p}</p>)}
+          <div class="stats">
+            {
+              intro.stats.map((s) => (
+                <article class="stat">
+                  <div class="stat-value">{s.value}</div>
+                  <p class="stat-body">{s.body}</p>
+                  <p class="stat-source">{s.source}</p>
+                </article>
+              ))
+            }
+          </div>
+          {intro.closing.map((p) => <p>{p}</p>)}
+        </section>
+
+        <section id="promise" class="section">
+          <div class="promise">
+            <h2>{promise.heading}</h2>
+            <p style="margin-top:0;">{promise.intro}</p>
+            <ul>
+              {promise.items.map((i) => <li>{i}</li>)}
+            </ul>
+            <p style="margin-bottom:0; color: var(--ink-mute);">{promise.outro}</p>
+          </div>
+        </section>
+
+        <section id="headcount" class="section">
+          <div class="interactive-frame">
+            <HeadcountStack client:load />
+          </div>
+        </section>
+
+        {
+          parts.map((part) => (
+            <>
+              <header id={part.id} class="part-opener">
+                <span class="part-numeral">{part.romanNumeral}</span>
+                <div class="part-title">
+                  <PartArt variant={part.id as "rituals" | "tools" | "norms"} />
+                  <h2>Part {part.romanNumeral}. {part.title}</h2>
+                  <p>{part.blurb}</p>
+                </div>
+              </header>
+              {part.sections.map((section) => (
+                <Section section={section} />
+              ))}
+            </>
+          ))
+        }
+
+        <section id="take-away-pack" class="pack">
+          <header class="section-header">
+            <span class="section-number">✂</span>
+            <h2 class="section-title">Take-away pack</h2>
+          </header>
+          <p style="color: var(--ink-mute); max-width: 60ch;">
+            Every copy-paste asset from the guide, in one place. Each one lives inside its section too. Come back to
+            this list when you are setting up a specific ritual or tool.
+          </p>
+          <div class="pack-grid">
+            {
+              takeAways.map((t) => (
+                <a class="pack-item" href={`#${parts.flatMap((p) => p.sections).find((s) => s.number === t.section)?.id}`}>
+                  <span class="num">{t.section}.</span>
+                  <span>{t.title}</span>
+                </a>
+              ))
+            }
+          </div>
+        </section>
+
+        <section id="sources" class="sources">
+          <header class="section-header">
+            <span class="section-number">↗</span>
+            <h2 class="section-title">Sources</h2>
+          </header>
+          <p style="color: var(--ink-mute); max-width: 60ch;">
+            Primary sources only. Every stat on this page traces back to one of the reports below.
+          </p>
+          <ol>
+            {
+              sources.map((s) => (
+                <li>
+                  <strong>{s.label}. </strong>
+                  {s.detail}
+                </li>
+              ))
+            }
+          </ol>
+        </section>
+      </div>
+    </div>
+  </div>
+</Base>

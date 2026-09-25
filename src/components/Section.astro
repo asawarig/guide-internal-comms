@@ -1,0 +1,86 @@
+---
+import type { Section } from "../content/guide";
+import WhatGoesWhere from "./WhatGoesWhere.tsx";
+import DecisionTree from "./DecisionTree.tsx";
+import ResponsePolicy from "./ResponsePolicy.tsx";
+
+interface Props {
+  section: Section;
+}
+
+const { section } = Astro.props;
+
+const takeAwayIsList = Array.isArray(section.takeAwayBody);
+---
+
+<section id={section.id} class="section">
+  <header class="section-header">
+    <span class="section-number">{section.number}</span>
+    <h2 class="section-title">{section.title}</h2>
+  </header>
+
+  <div class="section-body">
+    <div class="prose">
+      <p class="subhead">Why it matters</p>
+      <p class="lede">{section.why}</p>
+
+      <p class="subhead">What good looks like</p>
+      <p class="what-good">{section.whatGood}</p>
+
+      <p class="subhead">By team size</p>
+      <div class="bands">
+        {section.bands.map((band) => (
+          <article class="band">
+            <span class="band-range">{band.range}</span>
+            <span class="band-size">{band.label}</span>
+            <p class="band-body">{band.body}</p>
+          </article>
+        ))}
+      </div>
+
+      <p class="subhead">Common mistake</p>
+      <div class="mistake">
+        <span class="label">Where founders trip</span>
+        <p style="margin:0;">{section.mistake}</p>
+      </div>
+
+      <p class="subhead">Take this with you</p>
+      <div class="take-away">
+        <span class="label">Copy me</span>
+        <h4>{section.takeAwayTitle}</h4>
+        {takeAwayIsList ? (
+          <ul>
+            {(section.takeAwayBody as string[]).map((item) => (
+              <li>{item}</li>
+            ))}
+          </ul>
+        ) : (
+          <p style="margin:0;">{section.takeAwayBody as string}</p>
+        )}
+      </div>
+
+      {section.interactiveSlot === "what-goes-where" && (
+        <div class="interactive-frame">
+          <WhatGoesWhere client:visible />
+        </div>
+      )}
+
+      {section.interactiveSlot === "decision-tree" && (
+        <div class="interactive-frame">
+          <DecisionTree client:visible />
+        </div>
+      )}
+
+      {section.interactiveSlot === "response-policy" && (
+        <div class="interactive-frame">
+          <ResponsePolicy client:visible />
+        </div>
+      )}
+    </div>
+
+    <aside class="editors-note">
+      <span class="editors-note-label">Editor's note</span>
+      {section.editorsNote}
+    </aside>
+  </div>
+</section>
