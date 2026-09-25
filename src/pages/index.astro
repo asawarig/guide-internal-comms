@@ -46,18 +46,6 @@ import { intro, meta, parts, promise, sources, takeAways } from "../content/guid
             <h2 class="section-title">{intro.heading}</h2>
           </header>
           {intro.paragraphs.map((p) => <p>{p}</p>)}
-          <div class="stats">
-            {
-              intro.stats.map((s) => (
-                <article class="stat">
-                  <div class="stat-value">{s.value}</div>
-                  <p class="stat-body">{s.body}</p>
-                  <p class="stat-source">{s.source}</p>
-                </article>
-              ))
-            }
-          </div>
-          {intro.closing.map((p) => <p>{p}</p>)}
         </section>
 
         <section id="promise" class="section">

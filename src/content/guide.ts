@@ -11,24 +11,9 @@ export const meta = {
 export const intro = {
   heading: "Why this guide exists",
   paragraphs: [
-    "Plum is a group health insurance and employee benefits broker. We see, up close, what happens when a good benefits programme lands inside a bad comms setup. Employees do not know what they are covered for. Parents are not added because the memo went out on the wrong channel. Preventive check-ups sit unused. The gap is not in the policy. The gap is in how it was told.",
-    "Two sourced numbers make the case.",
-  ],
-  stats: [
-    {
-      value: "41%",
-      body: "of corporate employees said they were fully aware of the specific features and benefits in their company's group medical cover.",
-      source: "Tata AIG Corporate Health Protection Pulse 2026. 748 respondents across eight Indian metros.",
-    },
-    {
-      value: "83%",
-      body: "of Indian employees were unaware whether their plan covered preventive check-ups. 71% were unsure whether it covered their parents.",
-      source: "Onsurity Employee Healthcare and Benefits Study, 2024.",
-    },
-  ],
-  closing: [
-    "This is not a benefits problem. It is an internal communications problem. And internal comms in most Indian startups is not designed. It is inherited from whoever set up Slack first, and hardened into culture from there.",
-    "This guide is our best attempt to help founders design it on purpose. It is opinionated, staged by team size, and built to be used, not just read.",
+    "Internal comms in most Indian startups is not designed. It is inherited from whoever set up Slack first, and it hardens into culture from there. The channel structure, the meeting cadence, the response-time expectations were not chosen on purpose. All of it still shapes how the company runs.",
+    "The cost of getting this wrong is not always visible from the founder's chair. Employees miss things they should have seen. Decisions get made in DMs and never surface. The founder ends up as the human router, forwarding messages between teams that should be talking to each other directly. By the time it starts to hurt, it has been that way for a year.",
+    "This guide is an opinionated attempt to help founders design their internal comms on purpose. It is staged by team size and backed with sourced numbers where they help. Use it as a working reference: pick your team size, start with the sections you have not yet thought about, and copy the templates at the end of each one.",
   ],
 };
 
@@ -276,7 +261,7 @@ export const parts: Part[] = [
         number: "6",
         title: "The announcement channel",
         why:
-          "How you announce something reveals what you think announcements are for. Getting this wrong is how a benefits update lands in a channel nobody reads, and 83% of employees end up unaware whether their plan covers preventive check-ups (Onsurity, 2024). Matching the weight of the news to the medium is the single highest-leverage change in this guide.",
+          "How you announce something reveals what you think announcements are for. Big news dropped in the wrong channel gets missed, misheard, or reframed as gossip before leadership can tell the real story. Matching the weight of the news to the medium is the single highest-leverage change in this guide.",
         whatGood:
           "Small changes go in the wiki. Medium changes go in a Slack #announcements channel. Big changes go at the all-hands. Hard changes such as layoffs, restructures, or exits at the top happen in person or on a live call, never over Slack or email.",
         bands: [
@@ -302,7 +287,7 @@ export const parts: Part[] = [
         takeAwayBody:
           "The interactive grid in this section is the copy-paste version. Print or screenshot the result of your matches for your wiki.",
         editorsNote:
-          "The benefits update is the thing your team is most likely to miss. Please, for the love of your renewal, put it somewhere people will actually see it.",
+          "If you find yourself explaining the same news three times to three different people, it needed a bigger channel than the one you picked.",
         interactiveSlot: "what-goes-where",
       },
       {
@@ -554,16 +539,6 @@ export const takeAways = [
 ];
 
 export const sources = [
-  {
-    label: "Tata AIG Corporate Health Protection Pulse 2026",
-    detail:
-      "41% of corporate employees fully aware of the features and benefits in their group medical cover. 748 respondents aged 28 to 55 across Mumbai, Delhi, Bengaluru, Hyderabad, Chennai, Ahmedabad, Pune and Kolkata. Published August 2026.",
-  },
-  {
-    label: "Onsurity Employee Healthcare and Benefits Study",
-    detail:
-      "83% of Indian employees unaware whether their plan covered preventive check-ups. 71% unsure whether it covered their parents. Published 2024.",
-  },
   {
     label: "Gallup State of the Global Workplace 2026",
     detail:
