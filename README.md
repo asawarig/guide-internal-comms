@@ -11,7 +11,7 @@ npm run build     # static output to ./dist
 npm run preview   # preview the build
 ```
 
-Base path is set to `/guides/internal-communications` in `astro.config.mjs`. Change it if the guide series lives elsewhere.
+Base path is set to `/library/internal-communications` in `astro.config.mjs`. Change it if the guide series lives elsewhere.
 
 ## Where the copy lives
 
@@ -38,4 +38,4 @@ Fonts: GT Alpina (display) and Passenger Sans (body) if licensed on the host, wi
 
 ## Webflow Cloud
 
-The build is a static site. Point Webflow Cloud at `npm run build` with output directory `dist`. Base path is `/guides/internal-communications`. If the URL differs, edit `base` in `astro.config.mjs` before deploying.
+The build is a static site. Point Webflow Cloud at `npm run build` with output directory `dist`. Base path is `/library/internal-communications`. If the URL differs, edit `base` in `astro.config.mjs` before deploying.
