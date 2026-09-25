@@ -1,0 +1,27 @@
+{
+  "name": "guide-internal-comms",
+  "version": "1.0.0",
+  "description": "The Plum guide to internal communications",
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/asawarig/guide-internal-comms.git"
+  },
+  "author": "Plum",
+  "license": "UNLICENSED",
+  "dependencies": {
+    "@astrojs/react": "^4.4.0",
+    "@types/react": "^19.2.6",
+    "@types/react-dom": "^19.2.4",
+    "astro": "^5.15.4",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0"
+  }
+}

@@ -1,0 +1,48 @@
+---
+interface Props {
+  variant: "rituals" | "tools" | "norms";
+}
+const { variant } = Astro.props;
+---
+
+<svg class="part-art" viewBox="0 0 120 120" width="72" height="72" role="img" aria-hidden="true">
+  {
+    variant === "rituals" && (
+      <g>
+        <circle cx="60" cy="60" r="40" fill="none" stroke="var(--coral)" stroke-width="3" />
+        <circle cx="60" cy="60" r="24" fill="none" stroke="var(--deep-purple-2)" stroke-width="2" />
+        <circle cx="60" cy="60" r="6" fill="var(--coral)" />
+      </g>
+    )
+  }
+  {
+    variant === "tools" && (
+      <g>
+        <rect x="20" y="30" width="80" height="60" rx="6" fill="none" stroke="var(--deep-purple)" stroke-width="3" />
+        <rect x="20" y="30" width="80" height="14" fill="var(--coral)" />
+        <line x1="32" y1="60" x2="88" y2="60" stroke="var(--deep-purple)" stroke-width="2" />
+        <line x1="32" y1="72" x2="70" y2="72" stroke="var(--deep-purple)" stroke-width="2" />
+      </g>
+    )
+  }
+  {
+    variant === "norms" && (
+      <g>
+        <path
+          d="M20 90 L60 20 L100 90 Z"
+          fill="none"
+          stroke="var(--deep-purple)"
+          stroke-width="3"
+          stroke-linejoin="round"
+        />
+        <circle cx="60" cy="70" r="6" fill="var(--coral)" />
+      </g>
+    )
+  }
+</svg>
+
+<style>
+  .part-art {
+    display: block;
+  }
+</style>

@@ -1,0 +1,56 @@
+---
+import { parts } from "../content/guide";
+---
+
+<aside class="toc" aria-label="On this page">
+  <p class="toc-label">On this page</p>
+  {
+    parts.map((part) => (
+      <div class="toc-part">
+        <p class="toc-part-title">
+          Part {part.romanNumeral} · {part.title}
+        </p>
+        {part.sections.map((s) => (
+          <a href={`#${s.id}`} data-toc-link={s.id}>
+            {s.number}. {s.title}
+          </a>
+        ))}
+      </div>
+    ))
+  }
+  <div class="toc-part">
+    <p class="toc-part-title">Also on this page</p>
+    <a href="#take-away-pack" data-toc-link="take-away-pack">Take-away pack</a>
+    <a href="#sources" data-toc-link="sources">Sources</a>
+  </div>
+</aside>
+
+<script is:inline>
+  (function () {
+    var links = Array.from(document.querySelectorAll("[data-toc-link]"));
+    if (!links.length) return;
+    var byId = new Map();
+    links.forEach(function (a) {
+      byId.set(a.getAttribute("data-toc-link"), a);
+    });
+    var observer = new IntersectionObserver(
+      function (entries) {
+        entries.forEach(function (entry) {
+          var link = byId.get(entry.target.id);
+          if (!link) return;
+          if (entry.isIntersecting) {
+            links.forEach(function (l) {
+              l.classList.remove("active");
+            });
+            link.classList.add("active");
+          }
+        });
+      },
+      { rootMargin: "-40% 0px -55% 0px", threshold: 0 }
+    );
+    byId.forEach(function (_link, id) {
+      var el = document.getElementById(id);
+      if (el) observer.observe(el);
+    });
+  })();
+</script>
