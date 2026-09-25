@@ -5,7 +5,8 @@ import HeroArt from "../components/HeroArt.astro";
 import PartArt from "../components/PartArt.astro";
 import TableOfContents from "../components/TableOfContents.astro";
 import HeadcountStack from "../components/HeadcountStack.tsx";
-import { intro, meta, parts, promise, sources, takeAways } from "../content/guide";
+import { companyExamples, intro, meta, parts, promise, sources, takeAways } from "../content/guide";
+const toolkitHref = `${import.meta.env.BASE_URL}${meta.toolkitFileName}`.replace(/\/\//g, "/");
 ---
 
 <Base>
@@ -83,6 +84,41 @@ import { intro, meta, parts, promise, sources, takeAways } from "../content/guid
           ))
         }
 
+        <section id="company-examples" class="pack">
+          <header class="section-header">
+            <span class="section-number">◆</span>
+            <h2 class="section-title">{companyExamples.heading}</h2>
+          </header>
+          <p style="color: var(--ink-mute); max-width: 60ch;">{companyExamples.blurb}</p>
+          {companyExamples.awaitingContent ? (
+            <div class="examples-empty">
+              <h3>Coming next</h3>
+              <p style="margin:0;">
+                Examples from real companies — the docs, wikis, and rituals worth stealing — will land here once
+                they are gathered. Have one to nominate? Send it in.
+              </p>
+            </div>
+          ) : (
+            <div class="pack-grid">
+              {companyExamples.examples.map((ex) => (
+                <article class="pack-item">
+                  <span class="num">◆</span>
+                  <div>
+                    <strong style="color: var(--deep-purple);">{ex.company}</strong>
+                    <span style="color: var(--ink-mute); font-size: 0.85rem;"> · {ex.docType}</span>
+                    <p style="margin: 4px 0 0;">{ex.blurb}</p>
+                    {ex.sourceUrl && (
+                      <a href={ex.sourceUrl} style="font-size: 0.85rem;" rel="noopener" target="_blank">
+                        View source
+                      </a>
+                    )}
+                  </div>
+                </article>
+              ))}
+            </div>
+          )}
+        </section>
+
         <section id="take-away-pack" class="pack">
           <header class="section-header">
             <span class="section-number">✂</span>
@@ -92,6 +128,13 @@ import { intro, meta, parts, promise, sources, takeAways } from "../content/guid
             Every copy-paste asset from the guide, in one place. Each one lives inside its section too. Come back to
             this list when you are setting up a specific ritual or tool.
           </p>
+          <div class="download-cta">
+            <div>
+              <h3>Download the full toolkit (.docx)</h3>
+              <p>Every playbook, checklist, script, and template in a single Word document. Edit it, share it, print it.</p>
+            </div>
+            <a href={toolkitHref} download={meta.toolkitFileName}>Download .docx</a>
+          </div>
           <div class="pack-grid">
             {
               takeAways.map((t) => (

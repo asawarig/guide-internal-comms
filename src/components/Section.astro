@@ -9,8 +9,6 @@ interface Props {
 }
 
 const { section } = Astro.props;
-
-const takeAwayIsList = Array.isArray(section.takeAwayBody);
 ---
 
 <section id={section.id} class="section">
@@ -48,15 +46,17 @@ const takeAwayIsList = Array.isArray(section.takeAwayBody);
       <div class="take-away">
         <span class="label">Copy me</span>
         <h4>{section.takeAwayTitle}</h4>
-        {takeAwayIsList ? (
-          <ul>
-            {(section.takeAwayBody as string[]).map((item) => (
-              <li>{item}</li>
-            ))}
-          </ul>
-        ) : (
-          <p style="margin:0;">{section.takeAwayBody as string}</p>
-        )}
+        {section.takeAwayBlocks.map((block) => (
+          <div class="take-away-block">
+            <p class="take-away-sub">{block.subheading}</p>
+            {block.intro && <p class="take-away-intro">{block.intro}</p>}
+            {block.items && (
+              <ul>
+                {block.items.map((item) => <li>{item}</li>)}
+              </ul>
+            )}
+          </div>
+        ))}
       </div>
 
       {section.interactiveSlot === "what-goes-where" && (

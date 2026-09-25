@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
-    "build": "astro build",
+    "build:toolkit": "node --experimental-strip-types scripts/build-toolkit-docx.ts",
+    "build": "npm run build:toolkit && astro build",
     "preview": "astro preview",
     "astro": "astro"
   },
@@ -23,5 +24,8 @@
     "astro": "^5.15.4",
     "react": "^19.2.0",
     "react-dom": "^19.2.0"
+  },
+  "devDependencies": {
+    "docx": "^9.7.2"
   }
 }
