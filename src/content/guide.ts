@@ -659,7 +659,7 @@ export const parts: Part[] = [
           {
             label: "50 to 150",
             range: "Series A onwards",
-            body: "A full meeting charter in the wiki. One no-meeting day a week. A quarterly meeting audit that deletes recurring meetings nobody defends.",
+            body: "A full meeting charter in the wiki. One no-meeting day a week. A quarterly meeting audit that deletes recurring meetings nobody has an answer for.",
           },
         ],
         mistake:
@@ -1171,7 +1171,7 @@ export const headcountBands = [
     size: 150,
     label: "150 people",
     band: "50-150",
-    now: "Everything above, plus a quarterly meeting audit that deletes what nobody defends. A written meeting charter reviewed twice a year.",
+    now: "Everything above, plus a quarterly meeting audit that deletes what nobody remembers signing up for. A written meeting charter reviewed twice a year.",
     next: "Above 150 you are past the scope of this guide. The rituals hold; the tooling gets heavier.",
   },
 ];
