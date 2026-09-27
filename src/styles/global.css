@@ -33,7 +33,8 @@
   --sev-pink:  #FFD9DC;
   --sev-coral: #FF9FA8;
 
-  --shadow-cta: 0 12px 32px rgba(58, 14, 43, 0.10), 0 2px 4px rgba(58, 14, 43, 0.06);
+  --shadow-cta: 0 1px 0 rgba(58, 14, 43, 0.04), 0 2px 8px rgba(58, 14, 43, 0.06), 0 20px 40px -12px rgba(58, 14, 43, 0.12);
+  --shadow-inset: inset 0 0 0 1px rgba(58, 14, 43, 0.04);
 
   --font-display: "GT Alpina", "Iowan Old Style", Georgia, "Times New Roman", serif;
   --font-sans: "Passenger Sans", "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
@@ -525,7 +526,7 @@ p {
 
 .section {
   padding: 80px 0 56px;
-  border-top: 1px solid var(--line-lavender);
+  border-top: 1px solid var(--line-lavender-2);
 }
 
 .section-eyebrow {
@@ -541,7 +542,7 @@ p {
 
 .section-title {
   margin: 0 0 20px;
-  max-width: 18ch;
+  max-width: 26ch;
 }
 
 .section-rule {
@@ -596,9 +597,9 @@ p {
 }
 
 .band {
-  background: var(--cream-deep);
-  border: 1px solid var(--line-lavender);
-  border-radius: 7px;
+  background: #FFFDF6;
+  border: 1px solid var(--line-lavender-2);
+  border-radius: 12px;
   padding: 22px 22px 24px;
   display: flex;
   flex-direction: column;
@@ -641,8 +642,8 @@ p {
   background: var(--sev-blush);
   color: var(--fg-1);
   border: 1px solid var(--plum-red);
-  border-radius: 7px;
-  padding: 20px 22px;
+  border-radius: 12px;
+  padding: 22px 26px;
 }
 
 .mistake .label {
@@ -667,9 +668,9 @@ p {
 
 .plum-excerpt {
   background: var(--cream-warm);
-  border: 1px solid var(--line-lavender);
-  border-radius: 7px;
-  padding: 22px 26px;
+  border: 1px solid var(--line-lavender-2);
+  border-radius: 12px;
+  padding: 26px 30px;
   margin: 12px 0 0;
   box-shadow: var(--shadow-cta);
 }
@@ -717,10 +718,10 @@ p {
 /* Take-away — the mini-playbook block. Cream-deep card, hairline border. */
 
 .take-away {
-  background: var(--cream-deep);
-  border: 1px solid var(--line-lavender);
-  border-radius: 7px;
-  padding: 28px 32px;
+  background: #FFFDF6;
+  border: 1px solid var(--line-lavender-2);
+  border-radius: 12px;
+  padding: 32px 36px;
   box-shadow: var(--shadow-cta);
 }
 
@@ -827,10 +828,10 @@ p {
 }
 
 .interactive-frame {
-  margin: 24px 0 0;
-  padding: 28px 32px;
-  border: 1px solid var(--line-lavender);
-  border-radius: 7px;
+  margin: 32px 0 0;
+  padding: 32px 36px;
+  border: 1px solid var(--line-lavender-2);
+  border-radius: 14px;
   background: var(--cream-deep);
   box-shadow: var(--shadow-cta);
 }
@@ -838,9 +839,11 @@ p {
 /* Reader promise block */
 
 .promise {
-  background: var(--cream-deep);
-  border: 1px solid var(--line-lavender);
-  padding: 28px;
+  background: #FFFDF6;
+  border: 1px solid var(--line-lavender-2);
+  border-radius: 12px;
+  padding: 32px;
+  box-shadow: var(--shadow-cta);
 }
 
 .promise h2 {
@@ -899,14 +902,15 @@ p {
   grid-template-columns: auto 1fr;
   gap: 12px;
   align-items: baseline;
-  padding: 14px 16px;
-  background: var(--cream-deep);
-  border: 1px solid var(--line-lavender);
-  border-radius: 7px;
+  padding: 16px 20px;
+  background: #FFFDF6;
+  border: 1px solid var(--line-lavender-2);
+  border-radius: 10px;
   color: var(--fg-1);
   text-decoration: none;
   font-family: var(--font-sans);
   font-size: 14.5px;
+  box-shadow: var(--shadow-cta);
   transition: border-color 180ms ease-out, color 180ms ease-out, transform 180ms ease-out;
 }
 
@@ -927,10 +931,10 @@ p {
 
 .example {
   display: block;
-  padding: 20px 22px;
-  background: var(--cream-deep);
-  border: 1px solid var(--line-lavender);
-  border-radius: 7px;
+  padding: 26px 30px;
+  background: #FFFDF6;
+  border: 1px solid var(--line-lavender-2);
+  border-radius: 12px;
   text-decoration: none;
   color: var(--fg-1);
   box-shadow: var(--shadow-cta);
@@ -976,10 +980,25 @@ p {
 }
 
 .example-source {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
   font-family: var(--font-sans);
-  font-size: 13px;
+  font-size: 12px;
+  font-weight: 500;
   color: var(--plum-red);
   letter-spacing: 0.02em;
+  padding-top: 4px;
+  border-top: none;
+}
+
+.example-source::after {
+  content: "→";
+  transition: transform 150ms ease-out;
+}
+
+.example:hover .example-source::after {
+  transform: translateX(3px);
 }
 
 .examples-empty {
@@ -1011,7 +1030,7 @@ p {
   gap: 24px;
   align-items: center;
   grid-template-columns: 1fr;
-  border-radius: 7px;
+  border-radius: 14px;
   box-shadow: var(--shadow-cta);
 }
 
@@ -1185,13 +1204,12 @@ p {
   display: block;
 }
 
-/* Inline links inside prose — clearer that they lead somewhere */
+/* Inline links inside body prose only — not on card-shaped anchors. */
 
-.prose p a,
-.plum-excerpt a,
-.take-away a,
-.pack a,
-.sources a {
+.prose > p a,
+.plum-excerpt p a,
+.take-away li a,
+.sources li a {
   color: var(--plum-red);
   text-decoration: underline;
   text-decoration-color: var(--line-lavender);
@@ -1200,10 +1218,18 @@ p {
   transition: text-decoration-color 180ms ease-out;
 }
 
-.prose p a:hover,
-.plum-excerpt a:hover,
-.take-away a:hover,
-.pack a:hover,
-.sources a:hover {
+.prose > p a:hover,
+.plum-excerpt p a:hover,
+.take-away li a:hover,
+.sources li a:hover {
   text-decoration-color: var(--plum-red);
+}
+
+/* Anchor cards (examples, pack items) suppress inherited underlines. */
+
+.example,
+.example *,
+.pack-item,
+.pack-item * {
+  text-decoration: none;
 }
