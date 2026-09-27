@@ -84,7 +84,7 @@ export const parts: Part[] = [
         number: "1",
         title: "The all-hands",
         why:
-          "The all-hands is the loudest signal a company sends about how it makes decisions and who gets to hear about them. Gallup's 2026 report put Indian employee engagement at 23%, a four-year low, and manager engagement in India fell from 39% to 30% in a single year. When managers pass along less of the strategy sideways, the all-hands has to carry more of it directly. And there is a hard ceiling on how many people can meaningfully talk to each other at once: <a href=\"https://en.wikipedia.org/wiki/Dunbar%27s_number\" target=\"_blank\" rel=\"noopener\">Dunbar's number</a> says the number of stable relationships one person can maintain caps out around 150, and the working-conversation subset is much smaller. The founder who treats the all-hands as a status update is missing the room's real question: is this still a place I want to work in a year.",
+          "There is a hard ceiling on how many people can talk to each other at the same time and still call it a conversation. Robin Dunbar put the number of stable relationships one person can hold at around 150 — <a href=\"https://en.wikipedia.org/wiki/Dunbar%27s_number\" target=\"_blank\" rel=\"noopener\">Dunbar's number</a> — and the sub-group that can genuinely debate a topic together is closer to twelve. The all-hands sits directly on top of this limit, which is why it stops being a conversation and starts being a broadcast at exactly the moment the room gets too big. Gallup's 2026 report put Indian employee engagement at 23%, a four-year low, and manager engagement in India fell from 39% to 30% in a single year. When managers pass less strategy sideways, the all-hands has to carry more of it. The founder who treats it as a status update is missing the room's real question: is this still a place I want to work in a year.",
         whatGood:
           "Cadence matches company size. Every all-hands has a written agenda circulated 24 hours before, and 20 minutes of unrehearsed Q&A. Anyone can add a question in advance and anonymously. The meeting ends with three things the audience can quote back: one number, one decision, one thing that is changing. The recording, when there is one, is posted the same day.",
         bands: [
@@ -105,7 +105,7 @@ export const parts: Part[] = [
           },
         ],
         mistake:
-          "Keeping the weekly cadence past 40 people. The format quietly turns from conversation into broadcast, and nobody notices until people stop showing up.",
+          "Keeping the weekly cadence past 40 people. Somewhere around 45 the format flips from conversation into broadcast, and nobody notices until people stop showing up.",
         takeAwayTitle: "The all-hands playbook",
         takeAwayBlocks: [
           {
@@ -151,14 +151,14 @@ export const parts: Part[] = [
           },
         ],
         editorsNote:
-          "The <em>Succession</em> test: if this were dramatised, would anyone find the plot interesting? If your all-hands is 30 minutes of good news read from a slide, the answer is no, and your team is quietly checking their phones.",
+          "The <em>Succession</em> test: if this were dramatised, would anyone find the plot interesting? If your all-hands is 30 minutes of good news read from a slide, the answer is no, and half the room is already scrolling.",
       },
       {
         id: "newsletter",
         number: "2",
         title: "The internal newsletter",
         why:
-          "Most Indian startups do not have one, and the ones that do run it out of HR. It reads like HR. A newsletter is the only piece of the stack that becomes a permanent record of what the company was thinking at each phase. Matt Levine's <em>Money Stuff</em> and Julian Shapiro's writing are forwarded around not because they are important but because they are written like a person. Ten years in, your archive will be the truest history of the company. The founder who sends it in their own voice, in the first year, will be grateful in year three that they did.",
+          "Matt Levine's <em>Money Stuff</em> is a finance newsletter people forward around because it is written like a person who happens to know finance, not like a bank that happens to publish a newsletter. Julian Shapiro's essays travel the same way. Most Indian startups do not have an internal newsletter, and the ones that do run it out of HR. It reads like HR. A newsletter is the only piece of the comms stack that becomes a permanent record of what the company was thinking at each phase — ten years in, the archive is the truest history of the company. The founder who writes it in their own voice, in the first year, will be grateful in year three that they did.",
         whatGood:
           "Monthly, from the founder or a rotating leadership author, 400 to 600 words. Three fixed sections every issue: what we shipped, what we are watching, one thing on the founder's mind. Written the day it goes out, not curated over a week. Sent Friday morning at the same time. Signed by a person, not by 'The Team'.",
         bands: [
@@ -198,7 +198,7 @@ export const parts: Part[] = [
               "A customer conversation this week that shifted how I see the product.",
               "A metric I am watching for the first time. Why now.",
               "Something I got embarrassed about a year ago that I would do the same way today.",
-              "A hire we made recently. What they are quietly changing about how we work.",
+              "A hire we made recently. One thing they have already changed about how we work.",
               "A thing I keep saying in meetings that I am now starting to believe.",
               "A number that surprised me. What I think it means.",
               "A competitor's move I have been thinking about. What it says about the market.",
@@ -228,14 +228,14 @@ export const parts: Part[] = [
           },
         ],
         editorsNote:
-          "The best newsletter I have read from an Indian company was 350 words long and always came in on a Friday. It got forwarded around like gossip. That is the only KPI that matters.",
+          "The prompts do the work. If the founder has to think of what to write, the note gets skipped. If a prompt is waiting in the doc on Thursday, the note goes out on Friday.",
       },
       {
         id: "async-update",
         number: "3",
         title: "The async update",
         why:
-          "The async update replaces the standing status meeting. Done well, it saves a full afternoon a week per team and gives leadership a written record of what is happening without pulling anyone into a room. Microsoft's 2025 Work Trend Index, based on Microsoft 365 telemetry across 31 markets including India, found employees are interrupted every two minutes during core work hours. Sophie Leroy's <a href=\"https://www.sciencedirect.com/science/article/abs/pii/S0749597809000399\" target=\"_blank\" rel=\"noopener\">attention-residue research</a> shows that every context switch leaves a cognitive smear on what comes next. The async update is the format that fights both. The company that does it well ends up with a searchable history of every team's week. The one that does it badly ends up with a graveyard of unread Notion pages.",
+          "Sophie Leroy's <a href=\"https://www.sciencedirect.com/science/article/abs/pii/S0749597809000399\" target=\"_blank\" rel=\"noopener\">attention-residue research</a> found that when we switch from one task to another, the previous task keeps running in the background and makes us worse at the next one. Every status meeting is a switch tax on the entire team, paid twice: once to arrive, once to leave. Microsoft's 2025 Work Trend Index, based on 365 telemetry across 31 markets including India, found employees are interrupted every two minutes during core work hours — so the residue never really clears. The async update replaces the standing status meeting. Done well, it saves a full afternoon a week per team. The company that does it well ends up with a searchable history of every team's week. The one that does it badly ends up with a graveyard of unread Notion pages.",
         whatGood:
           "One written update per team per week, in a shared channel or a Notion page, following the same three-part shape: what we shipped, what is next, what we need help with. Posted on the same day every week, by the same time. Read by leadership within 48 hours, with a reaction or a comment on each so the team knows the update landed. No slide decks, no long paragraphs, no dashboards pasted in as screenshots.",
         bands: [
@@ -314,7 +314,7 @@ export const parts: Part[] = [
         number: "4",
         title: "The Slack (or Teams, or Google Chat) setup",
           why:
-          "The Slack setup is the most consequential design decision a company makes about comms, and the one leadership least often owns. It defaults into whatever the first three engineers set up. Most Indian companies actually run on a mix: Slack for tech teams, Google Chat inside Workspace, Teams at the enterprise end, and WhatsApp for everything else. The tool matters less than the discipline. Cal Newport calls the alternative the <a href=\"https://calnewport.com/a-world-without-email/\" target=\"_blank\" rel=\"noopener\">hyperactive hive mind</a>, and every unstructured Slack becomes one within eighteen months. The workspace that is designed on purpose in month six is the one that still scales at month sixty. The one that is not, is not.",
+          "Cal Newport calls it the <a href=\"https://calnewport.com/a-world-without-email/\" target=\"_blank\" rel=\"noopener\">hyperactive hive mind</a>: a workflow where nobody knows what anyone else is doing, so everyone stays in the tool refreshing, because that is the only way to find out. Every unstructured Slack becomes one within eighteen months. And the Slack setup is the most consequential design decision a company makes about comms, and the one leadership least often owns — it defaults into whatever the first three engineers set up. Most Indian companies actually run on a mix: Slack for tech teams, Google Chat inside Workspace, Teams at the enterprise end, and WhatsApp for everything else. The tool matters less than the discipline. The workspace that is designed on purpose in month six is the one that still scales at month sixty. The one that is not, is not.",
         whatGood:
           "A channel taxonomy the whole team knows. #announcements is leadership only with threads off, #team-x runs one per team, #proj-x runs per project and gets archived when the project ends, #random holds everything else. DMs are discouraged for anything a third person could learn from. Every channel has a purpose in its topic, a named owner in its description, and a retention plan. Every quarter, someone whose job includes it archives the channels that stopped moving.",
         bands: [
@@ -335,7 +335,7 @@ export const parts: Part[] = [
           },
         ],
         mistake:
-          "Bolting on new channels without ever archiving old ones. Within 18 months the workspace nobody designed becomes the workspace nobody can defend.",
+          "Bolting on new channels without ever archiving old ones. Within 18 months the workspace nobody designed becomes the workspace nobody can navigate, and every question is asked twice because nobody remembers where the answer lives.",
         plumExcerpt: {
           heading: "How Plum's own workspace is organised",
           intro:
@@ -411,7 +411,7 @@ export const parts: Part[] = [
         number: "5",
         title: "The company wiki",
         why:
-          "The wiki is the difference between context that compounds and context that leaves when someone quits. Every founder knows they need one. Most underinvest, because the payoff shows up only after the person who wrote it has left. Engineers call this the <a href=\"https://en.wikipedia.org/wiki/Bus_factor\" target=\"_blank\" rel=\"noopener\">bus factor</a>: the smallest number of people who could go under a bus before the project can no longer continue. A living wiki raises your bus factor for free. Startups that treat the wiki as the operating system, not the intranet, spend fewer hours a week answering the same questions and lose less institutional memory when someone moves on.",
+          "Engineers have a grim, useful metric for how fragile a codebase is: the <a href=\"https://en.wikipedia.org/wiki/Bus_factor\" target=\"_blank\" rel=\"noopener\">bus factor</a>. The smallest number of people who could be hit by a bus before the project can no longer continue. Most Indian startups have a bus factor of one on half their operating knowledge, and it lives in a founder's head. A living wiki raises that number for free. Every founder knows they need one. Most underinvest, because the payoff shows up only after the person who wrote it has left. Startups that treat the wiki as the operating system, not the intranet, spend fewer hours a week answering the same questions and lose less institutional memory when someone moves on.",
         whatGood:
           "A single home for policies, how-to guides, team pages, and decisions. Every new joiner can find the answers to the ten questions they will ask in their first month without asking anyone. Ownership is named on each page. The homepage is a directory, not a dashboard. Every page has a last-reviewed date, and there is a person whose job includes reviewing pages when they expire.",
         bands: [
@@ -492,7 +492,7 @@ export const parts: Part[] = [
         number: "6",
         title: "The announcement channel",
         why:
-          "How you announce something reveals what you think announcements are for. Big news dropped in the wrong channel gets missed, misheard, or reframed as gossip before leadership can tell the real story. This is the <a href=\"https://en.wikipedia.org/wiki/Zeigarnik_effect\" target=\"_blank\" rel=\"noopener\">Zeigarnik effect</a> working against you: unfinished or half-told stories occupy the mind far longer than closed ones, and your team will fill the gaps you leave open. Matching the weight of the news to the medium is the single highest-leverage change in this guide. The company that gets this right builds trust every time it opens its mouth. The one that gets it wrong pays for it in ways that show up in the exit interview.",
+          "In the 1920s, a psychologist named Bluma Zeigarnik noticed that waiters could recall the details of unpaid orders far more clearly than paid ones — as soon as a bill was settled, the memory faded. The <a href=\"https://en.wikipedia.org/wiki/Zeigarnik_effect\" target=\"_blank\" rel=\"noopener\">Zeigarnik effect</a> is now the name for the fact that unfinished or half-told stories occupy the mind far longer than closed ones. Every announcement you land badly is an open tab in your team's head, and they will fill the gaps you leave open. How you announce something reveals what you think announcements are for. Matching the weight of the news to the medium is the single highest-leverage change in this guide.",
         whatGood:
           "Small changes go in the wiki. Medium changes go in a Slack #announcements channel. Big changes go at the all-hands. Hard changes such as layoffs, restructures, or exits at the top happen in person or on a live call, never over Slack or email. Every announcement has one channel and one messenger, decided before it goes out. Nothing lands cold: the people affected first hear it directly, not from an all-team broadcast.",
         bands: [
@@ -571,7 +571,7 @@ export const parts: Part[] = [
         number: "7",
         title: "WhatsApp and the shadow comms layer",
         why:
-          "WhatsApp is the shadow comms layer at almost every Indian company. It is the default for founders, field teams, factory floors, and anyone who checks personal phones more than laptops. If <em>Panchayat</em> made one thing obvious, it is that in this country, a WhatsApp group is the operating system for anything that touches real people. It is also the layer with zero governance. When an employee leaves, they walk out with every group chat still on their phone, including whatever was said inside them. The company that treats WhatsApp as invisible pays for it during an audit, a dispute, or a data-privacy question years later.",
+          "If <em>Panchayat</em> made one thing obvious, it is that in this country a WhatsApp group is the operating system for anything that touches real people. Panchayat elections, school admissions, PTA meetings, apartment complexes, the sabzi order. And also, almost every Indian company. WhatsApp is the shadow comms layer at the office too — the default for founders, field teams, factory floors, and anyone who checks a personal phone more than a laptop. It is also the layer with zero governance. When an employee leaves, they walk out with every group chat still on their phone, including whatever was said inside them. The company that treats WhatsApp as invisible pays for it during an audit, a dispute, or a data-privacy question years later.",
         whatGood:
           "WhatsApp is used for two things and two things only: urgent operational pings, and social. Everything else lives in Slack or the wiki. Every WhatsApp group has a named admin who removes ex-employees the day they leave. Any decision that happens on WhatsApp is repeated in Slack or the wiki within 24 hours, so it lands in the searchable record. Nothing sensitive touches the layer at all.",
         bands: [
@@ -654,9 +654,9 @@ export const parts: Part[] = [
         number: "8",
         title: "Meeting norms",
         why:
-          "Meeting norms are the invisible rules of how a company runs its time. Microsoft's telemetry found meetings starting after 8 pm are up 16% year over year (Work Trend Index 2025, 31 markets including India). Left alone, meetings obey <a href=\"https://en.wikipedia.org/wiki/Parkinson%27s_law\" target=\"_blank\" rel=\"noopener\">Parkinson's Law</a>: work expands to fill the time available for its completion, and a 60-minute slot always finds 60 minutes of business. Most Indian startups have never written meeting norms down. The best ones do, and revisit them every six months. Not writing them down is a decision: it says the loudest people in the room set the rules, and everyone else adapts to that.",
+          "In 1955, a British naval historian named C. Northcote Parkinson wrote a wry essay for <em>The Economist</em> that opened with the line: 'Work expands to fill the time available for its completion.' It was meant as satire about civil service bureaucracies. <a href=\"https://en.wikipedia.org/wiki/Parkinson%27s_law\" target=\"_blank\" rel=\"noopener\">Parkinson's Law</a> is now the reason your 60-minute meetings always fill 60 minutes, whether or not there is 60 minutes of business to discuss. Meeting norms are the only thing that pushes back on it. Microsoft's telemetry found meetings starting after 8 pm are up 16% year over year (Work Trend Index 2025, 31 markets including India). Most Indian startups have never written meeting norms down. The best ones do, and revisit them every six months. Not writing them down is a decision: it says the loudest people in the room set the rules, and everyone else adapts to that.",
         whatGood:
-          "A shared document that answers: when is video on by default, when are cameras optional, what counts as a no-meeting block, what needs an agenda, and what does not. Reviewed twice a year. A protected no-meeting window at least once a week. A quarterly audit that retires recurring meetings nobody can defend. A culture where 'this could have been a message' is a safe thing to say.",
+          "A shared document that answers: when is video on by default, when are cameras optional, what counts as a no-meeting block, what needs an agenda, and what does not. Reviewed twice a year. A protected no-meeting window at least once a week. A quarterly audit that retires recurring meetings nobody has an answer for when asked what they are for. A culture where 'this could have been a message' is a safe thing to say.",
         bands: [
           {
             label: "Under 15",
@@ -746,7 +746,7 @@ export const parts: Part[] = [
         number: "9",
         title: "DM culture",
         why:
-          "Whether a workplace conversation happens in a public channel or a private DM is a cultural decision, not a personal one. A DM-heavy culture creates silos, gossip, and the political dynamics that come with them. A public-by-default culture creates transparency and, if unchecked, performance anxiety. The <em>Silicon Valley</em> archetype of the founder who runs the company through late-night DMs to their favourites is funny on HBO and corrosive in real life. Leadership becomes a series of one-to-one relationships that nobody else can see, and the team learns that access matters more than information.",
+          "The best joke in <em>Silicon Valley</em> is that Gavin Belson runs Hooli through late-night one-to-one texts to his favourites, and everyone below him spends the day trying to guess what got promised in which chat. It is funny on HBO because it is what actually happens in DM-heavy companies. Whether a workplace conversation lives in a public channel or a private DM is a cultural decision, not a personal one. A DM-heavy culture creates silos, gossip, and the politics that come with them. A public-by-default culture creates transparency and, if unchecked, performance anxiety. Leadership in a DM-heavy company becomes a series of one-to-one relationships nobody else can see, and the team learns that access matters more than information.",
         whatGood:
           "A written rule of thumb. DMs for sensitive, personal, or one-to-one matters. Threads for team work. Channels for anything a third person could learn from. Not no DMs ever, but here is when a channel is better. The founder models it: their answer to 'can I DM you?' is usually 'let's take it to [channel] if that works for you.' A new joiner sees the pattern in week one and copies it by week four.",
         bands: [
@@ -837,7 +837,7 @@ export const parts: Part[] = [
         number: "10",
         title: "Response time etiquette",
         why:
-          "Response time expectations are the least-discussed comms decision and the most consequential for burnout, focus, and trust. An Indeed survey of 500 Indian employees and 500 employers found that 88% of Indian employees are frequently contacted by employers outside work hours, and 79% worry about missed promotions or reputational damage if they tune out. Every buzz costs more than the reply: the same <a href=\"https://www.sciencedirect.com/science/article/abs/pii/S0749597809000399\" target=\"_blank\" rel=\"noopener\">attention-residue effect</a> means the next task starts with a smudge on the windshield. The <a href=\"https://prsindia.org/billtrack/the-right-to-disconnect-bill-2018\" target=\"_blank\" rel=\"noopener\">Right to Disconnect Bill 2025</a>, tabled in the Lok Sabha in December 2025, would make it illegal for employers to demand responses outside official hours. The company that writes its response-time norms down is the one that is ready for that shift, not scrambling under it.",
+          "88% of Indian employees are frequently contacted by employers outside work hours; 79% worry that tuning out will cost them a promotion (Indeed India, 2024). And every buzz costs more than the reply. Sophie Leroy's <a href=\"https://www.sciencedirect.com/science/article/abs/pii/S0749597809000399\" target=\"_blank\" rel=\"noopener\">attention-residue research</a> found that the next task starts with a smudge on the windshield from the last one, so the four-word Slack ping you fired at 10:47 pm cost the receiver 20 minutes of focus after the reply was sent. Response-time expectations are the least-discussed comms decision and the most consequential for burnout, focus, and trust. The <a href=\"https://prsindia.org/billtrack/the-right-to-disconnect-bill-2018\" target=\"_blank\" rel=\"noopener\">Right to Disconnect Bill 2025</a>, tabled in the Lok Sabha in December 2025, would make it illegal for employers to demand responses outside official hours. The company that writes its response-time norms down is the one ready for that shift, not scrambling under it.",
         whatGood:
           "Written response-time norms, agreed at a team level. Same-day for critical, next-day for the rest, 24 to 48 hours for anything async. An escalation path for genuinely urgent items that does not run through Slack. Quiet-hours markers on late-night messages, so the sender's convenience does not become the receiver's obligation. A founder who models it, out loud, and apologises when they slip.",
         bands: [
@@ -925,7 +925,7 @@ export const parts: Part[] = [
         number: "11",
         title: "The 'no hello' rule",
         why:
-          "The single most-shared internal comms rule on the internet, and one of the easiest to adopt. 'Hi, are you there?' then waiting for a reply before saying what you need wastes both people's time. The sender gets one context switch. The receiver gets two: once to answer the hello, once to answer the actual question. There is a whole website — <a href=\"https://nohello.net\" target=\"_blank\" rel=\"noopener\">nohello.net</a> — dedicated to this rule, and every remote-first company eventually adopts a version of it. The small productivity dividend from adopting it is real. The larger mood dividend is bigger.",
+          "Somebody, at some point, made a website called <a href=\"https://nohello.net\" target=\"_blank\" rel=\"noopener\">nohello.net</a> so they never had to explain the rule twice again. The rule: do not send 'hi' and stop. 'Hi, are you there?' then waiting for the reply before saying what you actually want wastes both people's time. The sender gets one context switch. The receiver gets two — once to answer the hello, once to answer the real question — plus the anxiety of not knowing what is coming until you turn up. Every remote-first company eventually adopts a version of the rule. The small productivity dividend is real. The larger mood dividend is bigger.",
         whatGood:
           "One message that says who you are (if needed), what you want, and by when you need it. If the answer is long, offer to jump on a call. Never send 'hi' and stop. New joiners hear it in week one, managers model it in week two, and the founder's own DMs prove it out.",
         bands: [
@@ -987,7 +987,7 @@ export const parts: Part[] = [
         number: "12",
         title: "The feedback loop",
         why:
-          "How feedback flows through a company is the deepest layer of its internal comms, and the one most Indian startups leave undesigned. A well-run feedback loop compounds over time. A performative one destroys trust faster than the absence of one. Researchers call the temporary bump from being surveyed the <a href=\"https://en.wikipedia.org/wiki/Hawthorne_effect\" target=\"_blank\" rel=\"noopener\">Hawthorne effect</a>: people behave differently when they know they are being measured, and the effect fades fast if nothing happens with the data. Every founder who has run a survey and then gone quiet for three months has taught their team not to answer the next one honestly.",
+          "In the late 1920s, researchers at the Hawthorne Works factory in Illinois found that workers' productivity went up whenever someone was studying them, and dropped as soon as the researchers left. The <a href=\"https://en.wikipedia.org/wiki/Hawthorne_effect\" target=\"_blank\" rel=\"noopener\">Hawthorne effect</a> is now shorthand for the temporary bump you get whenever people know they are being measured — and the crash that follows if nothing happens with the data. Every founder who has run a survey and then gone silent for three months has taught their team not to answer the next one honestly. How feedback flows through a company is the deepest layer of its internal comms, and the one most Indian startups leave undesigned. A well-run feedback loop compounds over time. A performative one destroys trust faster than the absence of one.",
         whatGood:
           "At least two channels. A quarterly anonymous engagement survey with results shared back within two weeks. Skip-level 1:1s at least twice a year. Leadership acts visibly on at least one thing per cycle, so the loop feels real. The survey questions do not change every quarter, so the team can see movement. The share-back is unedited: the good, the bad, the confusing.",
         bands: [
