@@ -34,7 +34,8 @@ export default function HeadcountStack() {
         />
         <div className="hc-ticks-track">
           {headcountBands.map((b, i) => {
-            const pct = (i / (headcountBands.length - 1)) * 100;
+            const pct = i / (headcountBands.length - 1);
+            const left = `calc(${THUMB_RADIUS_PX}px + (100% - ${2 * THUMB_RADIUS_PX}px) * ${pct})`;
             return (
               <button
                 type="button"
@@ -42,7 +43,7 @@ export default function HeadcountStack() {
                 className={"hc-tick" + (i === index ? " on" : "")}
                 aria-label={`${b.size} people`}
                 aria-pressed={i === index}
-                style={{ left: `${pct}%` }}
+                style={{ left }}
                 onClick={() => setIndex(i)}
               >
                 {b.size}
