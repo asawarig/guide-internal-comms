@@ -52,7 +52,7 @@ const toolkitHref = `${import.meta.env.BASE_URL}${meta.toolkitFileName}`.replace
           <h2 class="section-title">{intro.heading}</h2>
           <hr class="section-rule" />
           <div class="prose">
-            {intro.paragraphs.map((p) => <p>{p}</p>)}
+            {intro.paragraphs.map((p) => <p set:html={p} />)}
           </div>
         </section>
 

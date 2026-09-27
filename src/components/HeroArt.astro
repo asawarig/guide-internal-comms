@@ -1,6 +1,8 @@
 ---
-// Editorial hero mark. Cream field, one confident red line drawing.
-// A company talking to itself: many small circles, one loud one, hairline connections.
+// Editorial hero mark: a company talking to itself.
+// One loud red ribbon carrying the signal, hairline echoes trailing behind,
+// small nodes clustered along the paths. Pen-weight line drawing in plum-red
+// on cream-deep, with the signature arrow-tipped rule as the base line.
 ---
 
 <svg
@@ -12,48 +14,58 @@
 >
   <title id="hero-art-title">A company talking to itself</title>
   <desc id="hero-art-desc">
-    A cluster of small nodes linked by hairlines around one larger emphasised node — the loud message inside the quiet ones.
+    One loud red ribbon curls across the field, quieter hairlines echoing beneath it. Small nodes cluster along the paths. The signature arrow-tipped rule sits at the base.
   </desc>
 
   <!-- backdrop -->
   <rect x="0" y="0" width="500" height="400" fill="var(--cream-deep)" />
 
-  <!-- outer hairlines -->
-  <g stroke="var(--line-lavender)" stroke-width="1" fill="none">
-    <path d="M 40 100 C 160 40, 340 40, 460 100" />
-    <path d="M 40 300 C 160 360, 340 360, 460 300" />
+  <!-- quiet echo hairlines -->
+  <g fill="none" stroke="var(--line-lavender)" stroke-width="1" stroke-linecap="round">
+    <path d="M 30 130 C 130 90, 240 200, 350 130 S 460 200, 480 160" />
+    <path d="M 30 250 C 140 210, 260 320, 380 260 S 460 300, 480 280" />
   </g>
 
-  <!-- connecting spokes to the big node -->
-  <g stroke="var(--fg-1)" stroke-width="0.8" fill="none" opacity="0.55">
-    <line x1="260" y1="200" x2="90" y2="130" />
-    <line x1="260" y1="200" x2="170" y2="80" />
-    <line x1="260" y1="200" x2="340" y2="70" />
-    <line x1="260" y1="200" x2="410" y2="140" />
-    <line x1="260" y1="200" x2="420" y2="270" />
-    <line x1="260" y1="200" x2="330" y2="330" />
-    <line x1="260" y1="200" x2="180" y2="310" />
-    <line x1="260" y1="200" x2="80" y2="240" />
-  </g>
+  <!-- the loud red ribbon -->
+  <path
+    d="M 20 200 C 100 90, 220 300, 300 190 S 420 90, 490 220"
+    fill="none"
+    stroke="var(--plum-red)"
+    stroke-width="2.5"
+    stroke-linecap="round"
+  />
 
-  <!-- small nodes -->
+  <!-- nodes along the paths -->
   <g fill="var(--fg-1)">
-    <circle cx="90" cy="130" r="6" />
-    <circle cx="170" cy="80" r="6" />
-    <circle cx="340" cy="70" r="6" />
-    <circle cx="410" cy="140" r="6" />
-    <circle cx="420" cy="270" r="6" />
-    <circle cx="330" cy="330" r="6" />
-    <circle cx="180" cy="310" r="6" />
-    <circle cx="80" cy="240" r="6" />
+    <circle cx="80" cy="150" r="5" />
+    <circle cx="150" cy="185" r="5" />
+    <circle cx="220" cy="235" r="5" />
+    <circle cx="380" cy="130" r="5" />
+    <circle cx="440" cy="180" r="5" />
+    <circle cx="120" cy="235" r="5" />
+    <circle cx="260" cy="290" r="5" />
+    <circle cx="380" cy="285" r="5" />
   </g>
 
-  <!-- one loud node -->
-  <circle cx="260" cy="200" r="38" fill="var(--cream)" stroke="var(--plum-red)" stroke-width="1.5" />
-  <circle cx="260" cy="200" r="12" fill="var(--plum-red)" />
+  <!-- one loud node — the announcement -->
+  <circle cx="300" cy="190" r="26" fill="var(--cream)" stroke="var(--plum-red)" stroke-width="2" />
+  <circle cx="300" cy="190" r="9" fill="var(--plum-red)" />
 
-  <!-- signature: arrow-tipped rule below -->
+  <!-- a tiny voice bubble hint -->
+  <g fill="none" stroke="var(--fg-1)" stroke-width="1" opacity="0.55">
+    <path d="M 300 155 Q 285 145, 285 130" />
+    <path d="M 300 155 Q 315 145, 315 130" />
+  </g>
+
+  <!-- base signature: arrow-tipped rule -->
   <line x1="40" y1="360" x2="460" y2="360" stroke="var(--plum-red)" stroke-width="1" />
   <polygon points="34,360 42,356 42,364" fill="var(--plum-red)" />
   <polygon points="466,360 458,356 458,364" fill="var(--plum-red)" />
+
+  <!-- small caption dots -->
+  <g fill="var(--plum-red)">
+    <circle cx="150" cy="378" r="1.5" />
+    <circle cx="250" cy="378" r="1.5" />
+    <circle cx="350" cy="378" r="1.5" />
+  </g>
 </svg>

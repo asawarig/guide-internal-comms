@@ -1,5 +1,6 @@
 ---
 import "../styles/global.css";
+import BackToTop from "../components/BackToTop.astro";
 import { meta } from "../content/guide";
 
 interface Props {
@@ -51,5 +52,7 @@ const { title = meta.title, description = meta.tagline } = Astro.props;
         <span>© {new Date().getFullYear()} Plum Benefits</span>
       </div>
     </footer>
+
+    <BackToTop />
   </body>
 </html>

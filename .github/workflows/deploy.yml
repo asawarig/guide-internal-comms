@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - main
-      - claude/loving-allen-5dkni9
   workflow_dispatch:
 
 permissions:
@@ -12,8 +11,10 @@ permissions:
   pages: write
   id-token: write
 
+# Group concurrency per ref so a push to one branch never cancels a
+# deploy that's already running on main.
 concurrency:
-  group: pages
+  group: pages-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
