@@ -83,7 +83,7 @@ export const parts: Part[] = [
           },
           {
             label: "15 to 50",
-            range: "First real managers",
+            range: "15 to 50",
             body: "Fortnightly, 45 minutes. Rotating updates from function leads. Written agenda in advance.",
           },
           {
@@ -157,7 +157,7 @@ export const parts: Part[] = [
           },
           {
             label: "15 to 50",
-            range: "First real managers",
+            range: "15 to 50",
             body: "Fortnightly founder note. Personal, short, written the day it goes out.",
           },
           {
@@ -234,7 +234,7 @@ export const parts: Part[] = [
           },
           {
             label: "15 to 50",
-            range: "First real managers",
+            range: "15 to 50",
             body: "Weekly written update from every team lead. Same day, same format.",
           },
           {
@@ -313,7 +313,7 @@ export const parts: Part[] = [
           },
           {
             label: "15 to 50",
-            range: "First real managers",
+            range: "15 to 50",
             body: "One channel per team, one per active project. Rename #general to #announcements and lock it to leadership. Archive quarterly.",
           },
           {
@@ -410,7 +410,7 @@ export const parts: Part[] = [
           },
           {
             label: "15 to 50",
-            range: "First real managers",
+            range: "15 to 50",
             body: "The same pages, plus one team page per team, updated by the team lead. A weekly reminder to add a new decision to the log.",
           },
           {
@@ -491,7 +491,7 @@ export const parts: Part[] = [
           },
           {
             label: "15 to 50",
-            range: "First real managers",
+            range: "15 to 50",
             body: "Add a monthly HR digest to the wiki for policy and benefits updates. Cross-post the headline in Slack with a link.",
           },
           {
@@ -570,7 +570,7 @@ export const parts: Part[] = [
           },
           {
             label: "15 to 50",
-            range: "First real managers",
+            range: "15 to 50",
             body: "Written rules on what belongs on WhatsApp and what does not, pinned in each group. A monthly member cleanup.",
           },
           {
@@ -653,7 +653,7 @@ export const parts: Part[] = [
           },
           {
             label: "15 to 50",
-            range: "First real managers",
+            range: "15 to 50",
             body: "Add a protected block: one afternoon a week with no internal meetings. Enforce it from the top.",
           },
           {
@@ -745,7 +745,7 @@ export const parts: Part[] = [
           },
           {
             label: "15 to 50",
-            range: "First real managers",
+            range: "15 to 50",
             body: "A one-page written policy. Discussed at an all-hands, then pinned in the wiki.",
           },
           {
@@ -836,7 +836,7 @@ export const parts: Part[] = [
           },
           {
             label: "15 to 50",
-            range: "First real managers",
+            range: "15 to 50",
             body: "Written policy, one page, in the wiki. A quiet-hours window nobody messages inside without an apologies-for-the-hour note.",
           },
           {
@@ -924,7 +924,7 @@ export const parts: Part[] = [
           },
           {
             label: "15 to 50",
-            range: "First real managers",
+            range: "15 to 50",
             body: "Add it to the DM etiquette one-pager. Show two examples of a good and a bad ping.",
           },
           {
@@ -986,7 +986,7 @@ export const parts: Part[] = [
           },
           {
             label: "15 to 50",
-            range: "First real managers",
+            range: "15 to 50",
             body: "Quarterly anonymous survey. Officevibe, Culture Amp, or a Google Form works. Results shared in two weeks. One visible action per cycle.",
           },
           {
