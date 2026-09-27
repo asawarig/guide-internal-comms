@@ -1,0 +1,41 @@
+---
+// Floating "back to top" button. Plum-red pill, bottom-right.
+// Appears after 400px of scroll. Smooth scroll unless the user asks otherwise.
+---
+
+<button
+  id="back-to-top"
+  type="button"
+  class="back-to-top"
+  aria-label="Back to top"
+  hidden
+>
+  <svg viewBox="0 0 20 20" width="14" height="14" aria-hidden="true">
+    <path d="M10 3 L10 17 M4 9 L10 3 L16 9" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" />
+  </svg>
+  <span>top</span>
+</button>
+
+<script is:inline>
+  (function () {
+    var btn = document.getElementById("back-to-top");
+    if (!btn) return;
+    var threshold = 400;
+    var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    function onScroll() {
+      if (window.scrollY > threshold) {
+        btn.removeAttribute("hidden");
+      } else {
+        btn.setAttribute("hidden", "");
+      }
+    }
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+
+    btn.addEventListener("click", function () {
+      window.scrollTo({ top: 0, behavior: reduced ? "auto" : "smooth" });
+    });
+  })();
+</script>
