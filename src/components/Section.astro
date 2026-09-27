@@ -9,20 +9,17 @@ interface Props {
 }
 
 const { section } = Astro.props;
-
-const takeAwayIsList = Array.isArray(section.takeAwayBody);
 ---
 
 <section id={section.id} class="section">
-  <header class="section-header">
-    <span class="section-number">{section.number}</span>
-    <h2 class="section-title">{section.title}</h2>
-  </header>
+  <span class="section-eyebrow">Section {section.number}</span>
+  <h2 class="section-title">{section.title}</h2>
+  <hr class="section-rule" />
 
   <div class="section-body">
     <div class="prose">
       <p class="subhead">Why it matters</p>
-      <p class="lede">{section.why}</p>
+      <p>{section.why}</p>
 
       <p class="subhead">What good looks like</p>
       <p class="what-good">{section.whatGood}</p>
@@ -41,22 +38,40 @@ const takeAwayIsList = Array.isArray(section.takeAwayBody);
       <p class="subhead">Common mistake</p>
       <div class="mistake">
         <span class="label">Where founders trip</span>
-        <p style="margin:0;">{section.mistake}</p>
+        <p>{section.mistake}</p>
       </div>
+
+      {section.plumExcerpt && (
+        <>
+          <p class="subhead">How Plum does it</p>
+          <aside class="plum-excerpt">
+            <span class="label">Excerpt · Plum's internal Slack cheat code</span>
+            {section.plumExcerpt.heading && <h4>{section.plumExcerpt.heading}</h4>}
+            {section.plumExcerpt.intro && <p>{section.plumExcerpt.intro}</p>}
+            {section.plumExcerpt.items && (
+              <ul>
+                {section.plumExcerpt.items.map((item) => <li>{item}</li>)}
+              </ul>
+            )}
+          </aside>
+        </>
+      )}
 
       <p class="subhead">Take this with you</p>
       <div class="take-away">
         <span class="label">Copy me</span>
         <h4>{section.takeAwayTitle}</h4>
-        {takeAwayIsList ? (
-          <ul>
-            {(section.takeAwayBody as string[]).map((item) => (
-              <li>{item}</li>
-            ))}
-          </ul>
-        ) : (
-          <p style="margin:0;">{section.takeAwayBody as string}</p>
-        )}
+        {section.takeAwayBlocks.map((block) => (
+          <div class="take-away-block">
+            <p class="take-away-sub">{block.subheading}</p>
+            {block.intro && <p class="take-away-intro">{block.intro}</p>}
+            {block.items && (
+              <ul>
+                {block.items.map((item) => <li>{item}</li>)}
+              </ul>
+            )}
+          </div>
+        ))}
       </div>
 
       {section.interactiveSlot === "what-goes-where" && (

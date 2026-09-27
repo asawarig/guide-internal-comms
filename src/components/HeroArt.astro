@@ -1,76 +1,59 @@
 ---
-// Lead illustration: how a company talks to itself.
-// Nodes connected by ribbons — one loud, several quiet.
+// Editorial hero mark. Cream field, one confident red line drawing.
+// A company talking to itself: many small circles, one loud one, hairline connections.
 ---
 
-<svg class="hero-art" viewBox="0 0 500 400" role="img" aria-labelledby="hero-art-title">
-  <title id="hero-art-title">A company talking to itself: overlapping ribbons connect a cluster of nodes</title>
-  <defs>
-    <linearGradient id="ribbon-a" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="var(--coral)" stop-opacity="0.9" />
-      <stop offset="1" stop-color="var(--coral)" stop-opacity="0.3" />
-    </linearGradient>
-    <linearGradient id="ribbon-b" x1="0" y1="0" x2="1" y2="0">
-      <stop offset="0" stop-color="var(--deep-purple-2)" stop-opacity="0.6" />
-      <stop offset="1" stop-color="var(--deep-purple-2)" stop-opacity="0.15" />
-    </linearGradient>
-  </defs>
+<svg
+  class="hero-art"
+  viewBox="0 0 500 400"
+  role="img"
+  aria-labelledby="hero-art-title"
+  aria-describedby="hero-art-desc"
+>
+  <title id="hero-art-title">A company talking to itself</title>
+  <desc id="hero-art-desc">
+    A cluster of small nodes linked by hairlines around one larger emphasised node — the loud message inside the quiet ones.
+  </desc>
 
-  <!-- background page -->
-  <rect x="0" y="0" width="500" height="400" fill="var(--cream-2)" rx="22" />
+  <!-- backdrop -->
+  <rect x="0" y="0" width="500" height="400" fill="var(--cream-deep)" />
 
-  <!-- big loud ribbon -->
-  <path
-    d="M 40 120 C 140 20, 340 20, 460 140 C 340 260, 140 260, 40 120 Z"
-    fill="url(#ribbon-a)"
-    opacity="0.75"
-  />
-
-  <!-- quieter ribbon -->
-  <path
-    d="M 30 260 C 160 200, 320 320, 470 250"
-    stroke="url(#ribbon-b)"
-    stroke-width="28"
-    fill="none"
-    stroke-linecap="round"
-  />
-
-  <!-- nodes -->
-  <g fill="var(--deep-purple)">
-    <circle cx="90" cy="160" r="14" />
-    <circle cx="180" cy="90" r="14" />
-    <circle cx="260" cy="140" r="14" />
-    <circle cx="360" cy="80" r="14" />
-    <circle cx="420" cy="180" r="14" />
-    <circle cx="140" cy="260" r="14" />
-    <circle cx="240" cy="310" r="14" />
-    <circle cx="360" cy="290" r="14" />
+  <!-- outer hairlines -->
+  <g stroke="var(--line-lavender)" stroke-width="1" fill="none">
+    <path d="M 40 100 C 160 40, 340 40, 460 100" />
+    <path d="M 40 300 C 160 360, 340 360, 460 300" />
   </g>
 
-  <!-- inner dots -->
-  <g fill="var(--coral)">
-    <circle cx="90" cy="160" r="5" />
-    <circle cx="180" cy="90" r="5" />
-    <circle cx="260" cy="140" r="5" />
-    <circle cx="360" cy="80" r="5" />
-    <circle cx="420" cy="180" r="5" />
-    <circle cx="140" cy="260" r="5" />
-    <circle cx="240" cy="310" r="5" />
-    <circle cx="360" cy="290" r="5" />
+  <!-- connecting spokes to the big node -->
+  <g stroke="var(--fg-1)" stroke-width="0.8" fill="none" opacity="0.55">
+    <line x1="260" y1="200" x2="90" y2="130" />
+    <line x1="260" y1="200" x2="170" y2="80" />
+    <line x1="260" y1="200" x2="340" y2="70" />
+    <line x1="260" y1="200" x2="410" y2="140" />
+    <line x1="260" y1="200" x2="420" y2="270" />
+    <line x1="260" y1="200" x2="330" y2="330" />
+    <line x1="260" y1="200" x2="180" y2="310" />
+    <line x1="260" y1="200" x2="80" y2="240" />
+  </g>
+
+  <!-- small nodes -->
+  <g fill="var(--fg-1)">
+    <circle cx="90" cy="130" r="6" />
+    <circle cx="170" cy="80" r="6" />
+    <circle cx="340" cy="70" r="6" />
+    <circle cx="410" cy="140" r="6" />
+    <circle cx="420" cy="270" r="6" />
+    <circle cx="330" cy="330" r="6" />
+    <circle cx="180" cy="310" r="6" />
+    <circle cx="80" cy="240" r="6" />
   </g>
 
   <!-- one loud node -->
-  <circle cx="260" cy="200" r="34" fill="var(--white)" stroke="var(--coral)" stroke-width="6" />
-  <circle cx="260" cy="200" r="8" fill="var(--coral)" />
+  <circle cx="260" cy="200" r="38" fill="var(--cream)" stroke="var(--plum-red)" stroke-width="1.5" />
+  <circle cx="260" cy="200" r="12" fill="var(--plum-red)" />
 
-  <!-- connecting spokes -->
-  <g stroke="var(--deep-purple)" stroke-width="1.2" opacity="0.35" fill="none">
-    <line x1="260" y1="200" x2="90" y2="160" />
-    <line x1="260" y1="200" x2="180" y2="90" />
-    <line x1="260" y1="200" x2="360" y2="80" />
-    <line x1="260" y1="200" x2="420" y2="180" />
-    <line x1="260" y1="200" x2="140" y2="260" />
-    <line x1="260" y1="200" x2="240" y2="310" />
-    <line x1="260" y1="200" x2="360" y2="290" />
-  </g>
+  <!-- signature: arrow-tipped rule below -->
+  <line x1="40" y1="360" x2="460" y2="360" stroke="var(--plum-red)" stroke-width="1" />
+  <polygon points="34,360 42,356 42,364" fill="var(--plum-red)" />
+  <polygon points="466,360 458,356 458,364" fill="var(--plum-red)" />
 </svg>

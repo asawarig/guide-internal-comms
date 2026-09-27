@@ -3,13 +3,16 @@ import Base from "../layouts/Base.astro";
 import Section from "../components/Section.astro";
 import HeroArt from "../components/HeroArt.astro";
 import PartArt from "../components/PartArt.astro";
+import ArrowRule from "../components/ArrowRule.astro";
 import TableOfContents from "../components/TableOfContents.astro";
 import HeadcountStack from "../components/HeadcountStack.tsx";
-import { intro, meta, parts, promise, sources, takeAways } from "../content/guide";
+import { companyExamples, intro, meta, parts, promise, sources, takeAways } from "../content/guide";
+
+const toolkitHref = `${import.meta.env.BASE_URL}${meta.toolkitFileName}`.replace(/\/\//g, "/");
 ---
 
 <Base>
-  <!-- Mobile top nav: shows sections as pills -->
+  <!-- Mobile pill nav -->
   <nav class="top-nav" aria-label="Sections">
     <div class="top-nav-inner">
       {
@@ -27,12 +30,16 @@ import { intro, meta, parts, promise, sources, takeAways } from "../content/guid
   <div class="wrap">
     <section class="hero">
       <div>
-        <span class="hero-kicker">Plum guide · Internal comms</span>
-        <h1 class="hero-title">{meta.title}</h1>
-        <p class="hero-tagline">{meta.tagline}</p>
+        <span class="eyebrow">Plum · Library · Internal comms</span>
+        <h1 class="hero-title">
+          The Plum guide to internal <em class="headline-emphasis">communications</em>
+        </h1>
+        <p class="hero-standfirst">{meta.tagline}</p>
+        <a class="btn btn-primary" href="#why">start reading</a>
       </div>
       <HeroArt />
     </section>
+    <ArrowRule variant="lavender" />
   </div>
 
   <div class="wrap">
@@ -40,38 +47,31 @@ import { intro, meta, parts, promise, sources, takeAways } from "../content/guid
       <TableOfContents />
 
       <div class="editorial">
-        <section id="why" class="section" style="border-top: none; padding-top: 0;">
-          <header class="section-header">
-            <span class="section-number">§</span>
-            <h2 class="section-title">{intro.heading}</h2>
-          </header>
-          {intro.paragraphs.map((p) => <p>{p}</p>)}
-          <div class="stats">
-            {
-              intro.stats.map((s) => (
-                <article class="stat">
-                  <div class="stat-value">{s.value}</div>
-                  <p class="stat-body">{s.body}</p>
-                  <p class="stat-source">{s.source}</p>
-                </article>
-              ))
-            }
+        <section id="why" class="section" style="border-top: none; padding-top: 8px;">
+          <span class="section-eyebrow">Introduction</span>
+          <h2 class="section-title">{intro.heading}</h2>
+          <hr class="section-rule" />
+          <div class="prose">
+            {intro.paragraphs.map((p) => <p>{p}</p>)}
           </div>
-          {intro.closing.map((p) => <p>{p}</p>)}
         </section>
 
         <section id="promise" class="section">
           <div class="promise">
+            <span class="eyebrow">Reader promise</span>
             <h2>{promise.heading}</h2>
-            <p style="margin-top:0;">{promise.intro}</p>
+            <p style="margin-top:0; font-family: var(--font-sans); font-size: 15px;">{promise.intro}</p>
             <ul>
               {promise.items.map((i) => <li>{i}</li>)}
             </ul>
-            <p style="margin-bottom:0; color: var(--ink-mute);">{promise.outro}</p>
+            <p class="outro">{promise.outro}</p>
           </div>
         </section>
 
         <section id="headcount" class="section">
+          <span class="section-eyebrow">Interactive</span>
+          <h2 class="section-title">Your comms stack, by headcount</h2>
+          <hr class="section-rule" />
           <div class="interactive-frame">
             <HeadcountStack client:load />
           </div>
@@ -81,10 +81,11 @@ import { intro, meta, parts, promise, sources, takeAways } from "../content/guid
           parts.map((part) => (
             <>
               <header id={part.id} class="part-opener">
+                <span class="eyebrow">Part {part.romanNumeral}</span>
                 <span class="part-numeral">{part.romanNumeral}</span>
+                <PartArt variant={part.id as "rituals" | "tools" | "norms"} />
                 <div class="part-title">
-                  <PartArt variant={part.id as "rituals" | "tools" | "norms"} />
-                  <h2>Part {part.romanNumeral}. {part.title}</h2>
+                  <h2>{part.title}</h2>
                   <p>{part.blurb}</p>
                 </div>
               </header>
@@ -95,15 +96,48 @@ import { intro, meta, parts, promise, sources, takeAways } from "../content/guid
           ))
         }
 
+        <section id="company-examples" class="pack">
+          <span class="eyebrow">In the wild</span>
+          <h2 class="section-title">{companyExamples.heading}</h2>
+          <hr class="section-rule" />
+          <p class="pack-lead">{companyExamples.blurb}</p>
+          {companyExamples.awaitingContent ? (
+            <div class="examples-empty" style="margin-top: 20px;">
+              <h3>Coming next</h3>
+              <p>Examples will land here once they are gathered.</p>
+            </div>
+          ) : (
+            <div class="pack-grid" style="grid-template-columns: 1fr;">
+              {companyExamples.examples.map((ex) => (
+                <a class="example" href={ex.sourceUrl} rel="noopener" target="_blank">
+                  <div class="example-head">
+                    <h3 class="example-name">{ex.company}</h3>
+                    <span class="example-type">{ex.docType}</span>
+                  </div>
+                  <p class="example-body">{ex.blurb}</p>
+                  {ex.sourceUrl && <span class="example-source">{ex.sourceUrl.replace(/^https?:\/\//, "")}</span>}
+                </a>
+              ))}
+            </div>
+          )}
+        </section>
+
         <section id="take-away-pack" class="pack">
-          <header class="section-header">
-            <span class="section-number">✂</span>
-            <h2 class="section-title">Take-away pack</h2>
-          </header>
-          <p style="color: var(--ink-mute); max-width: 60ch;">
-            Every copy-paste asset from the guide, in one place. Each one lives inside its section too. Come back to
-            this list when you are setting up a specific ritual or tool.
+          <span class="eyebrow">Take-away pack</span>
+          <h2 class="section-title">Everything the guide gave you, in one place</h2>
+          <hr class="section-rule" />
+          <p class="pack-lead">
+            Every copy-paste asset from the guide, in one document. Edit it, share it, print it. The list below jumps back to the playbook inside its section.
           </p>
+
+          <div class="download-band">
+            <div>
+              <h3>Download the full toolkit</h3>
+              <p>Every playbook, checklist, script, and template in a single Word document.</p>
+            </div>
+            <a class="btn" href={toolkitHref} download={meta.toolkitFileName}>download .docx</a>
+          </div>
+
           <div class="pack-grid">
             {
               takeAways.map((t) => (
@@ -117,13 +151,10 @@ import { intro, meta, parts, promise, sources, takeAways } from "../content/guid
         </section>
 
         <section id="sources" class="sources">
-          <header class="section-header">
-            <span class="section-number">↗</span>
-            <h2 class="section-title">Sources</h2>
-          </header>
-          <p style="color: var(--ink-mute); max-width: 60ch;">
-            Primary sources only. Every stat on this page traces back to one of the reports below.
-          </p>
+          <span class="eyebrow">Sources</span>
+          <h2 class="section-title">Every number, traced back</h2>
+          <hr class="section-rule" />
+          <p>Primary sources only. Every stat on this page traces back to one of the reports below.</p>
           <ol>
             {
               sources.map((s) => (
