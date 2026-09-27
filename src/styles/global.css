@@ -12,9 +12,9 @@
 :root {
   color-scheme: light;
 
-  --cream: #FFFAF2;
-  --cream-deep: #FBF3E4;
-  --cream-warm: #F8EBD3;
+  --cream: #FBF7EF;
+  --cream-deep: #F5EDDF;
+  --cream-warm: #EFE3CD;
 
   --plum-red: #FF4052;
   --plum-red-deep: #D9243A;
@@ -33,7 +33,7 @@
   --sev-pink:  #FFD9DC;
   --sev-coral: #FF9FA8;
 
-  --shadow-cta: 0 1px 0 rgba(58, 14, 43, 0.04), 0 2px 8px rgba(58, 14, 43, 0.06), 0 20px 40px -12px rgba(58, 14, 43, 0.12);
+  --shadow-cta: 0 1px 0 rgba(58, 14, 43, 0.03), 0 1px 3px rgba(58, 14, 43, 0.04), 0 8px 24px -12px rgba(58, 14, 43, 0.08);
   --shadow-inset: inset 0 0 0 1px rgba(58, 14, 43, 0.04);
 
   --font-display: "GT Alpina", "Iowan Old Style", Georgia, "Times New Roman", serif;
@@ -602,7 +602,7 @@ p {
 }
 
 .band {
-  background: #FFFDF6;
+  background: #FFFFFF;
   border: 1px solid var(--line-lavender-2);
   border-radius: 12px;
   padding: 22px 22px 24px;
@@ -723,7 +723,7 @@ p {
 /* Take-away — the mini-playbook block. Cream-deep card, hairline border. */
 
 .take-away {
-  background: #FFFDF6;
+  background: #FFFFFF;
   border: 1px solid var(--line-lavender-2);
   border-radius: 12px;
   padding: 32px 36px;
@@ -844,7 +844,7 @@ p {
 /* Reader promise block */
 
 .promise {
-  background: #FFFDF6;
+  background: #FFFFFF;
   border: 1px solid var(--line-lavender-2);
   border-radius: 12px;
   padding: 32px;
@@ -908,7 +908,7 @@ p {
   gap: 12px;
   align-items: baseline;
   padding: 16px 20px;
-  background: #FFFDF6;
+  background: #FFFFFF;
   border: 1px solid var(--line-lavender-2);
   border-radius: 10px;
   color: var(--fg-1);
@@ -937,7 +937,7 @@ p {
 .example {
   display: block;
   padding: 26px 30px;
-  background: #FFFDF6;
+  background: #FFFFFF;
   border: 1px solid var(--line-lavender-2);
   border-radius: 12px;
   text-decoration: none;
