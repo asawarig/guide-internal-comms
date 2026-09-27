@@ -193,6 +193,7 @@ export default function HeadcountStack() {
           color: var(--fg-muted);
           font-size: 13px;
           font-weight: 500;
+          transform: translateX(5px);
           transition: color 150ms ease-out;
         }
         .hc-tick.on .hc-tick-dot {
