@@ -1,0 +1,16 @@
+---
+// Signature Plum element: 1px line with tiny triangular arrowheads at both ends.
+// Red for section dividers, lavender for chrome.
+interface Props {
+  variant?: "red" | "lavender";
+}
+const { variant = "red" } = Astro.props;
+---
+
+<div class={`arrow-rule ${variant === "lavender" ? "arrow-rule--lavender" : ""}`} aria-hidden="true">
+  <svg viewBox="0 0 100 12" preserveAspectRatio="none">
+    <line x1="6" y1="6" x2="94" y2="6" stroke="currentColor" stroke-width="1" vector-effect="non-scaling-stroke" />
+    <polygon points="0,6 8,2 8,10" fill="currentColor" />
+    <polygon points="100,6 92,2 92,10" fill="currentColor" />
+  </svg>
+</div>

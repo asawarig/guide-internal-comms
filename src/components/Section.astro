@@ -12,15 +12,14 @@ const { section } = Astro.props;
 ---
 
 <section id={section.id} class="section">
-  <header class="section-header">
-    <span class="section-number">{section.number}</span>
-    <h2 class="section-title">{section.title}</h2>
-  </header>
+  <span class="section-eyebrow">Section {section.number}</span>
+  <h2 class="section-title">{section.title}</h2>
+  <hr class="section-rule" />
 
   <div class="section-body">
     <div class="prose">
       <p class="subhead">Why it matters</p>
-      <p class="lede">{section.why}</p>
+      <p>{section.why}</p>
 
       <p class="subhead">What good looks like</p>
       <p class="what-good">{section.whatGood}</p>
@@ -39,8 +38,24 @@ const { section } = Astro.props;
       <p class="subhead">Common mistake</p>
       <div class="mistake">
         <span class="label">Where founders trip</span>
-        <p style="margin:0;">{section.mistake}</p>
+        <p>{section.mistake}</p>
       </div>
+
+      {section.plumExcerpt && (
+        <>
+          <p class="subhead">How Plum does it</p>
+          <aside class="plum-excerpt">
+            <span class="label">Excerpt · Plum's internal Slack cheat code</span>
+            {section.plumExcerpt.heading && <h4>{section.plumExcerpt.heading}</h4>}
+            {section.plumExcerpt.intro && <p>{section.plumExcerpt.intro}</p>}
+            {section.plumExcerpt.items && (
+              <ul>
+                {section.plumExcerpt.items.map((item) => <li>{item}</li>)}
+              </ul>
+            )}
+          </aside>
+        </>
+      )}
 
       <p class="subhead">Take this with you</p>
       <div class="take-away">

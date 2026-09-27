@@ -39,6 +39,12 @@ export type TakeAwayBlock = {
   items?: string[];
 };
 
+export type PlumExcerpt = {
+  heading?: string;
+  intro?: string;
+  items?: string[];
+};
+
 export type Section = {
   id: string;
   number: string;
@@ -51,6 +57,7 @@ export type Section = {
     body: string;
   }[];
   mistake: string;
+  plumExcerpt?: PlumExcerpt;
   takeAwayTitle: string;
   takeAwayBlocks: TakeAwayBlock[];
   editorsNote: string;
@@ -329,6 +336,23 @@ export const parts: Part[] = [
         ],
         mistake:
           "Bolting on new channels without ever archiving old ones. Within 18 months the workspace nobody designed becomes the workspace nobody can defend.",
+        plumExcerpt: {
+          heading: "How Plum's own workspace is organised",
+          intro:
+            "Plum's Slack Cheat Code, given to every new joiner, lists the channels new plumbers should look out for. The taxonomy has grown deliberately, and every channel earns its purpose.",
+          items: [
+            "#announcements — company-level updates.",
+            "#announcements-new-plumbers — get to know new plumbers (beyond work too).",
+            "#customers — details on customers, won and lost.",
+            "#hiring — potential referrals, connect the company with the best.",
+            "#the-care-code — policies, benefits, culture.",
+            "#plum-versary — celebrate plumbers who complete yearly milestones.",
+            "#jargon — simplify and understand industry terminology.",
+            "#plum-ber-shoutouts — small and big wins of any kind.",
+            "#until-next-time — plumbers who move on share their goodbyes.",
+            "Micro-communities: #football, #basketball, #badminton-plum, #pets-of-plum, #readings, #women-at-plum, #trekking-club, #cricket, #runningatplum, #the-wellness-community.",
+          ],
+        },
         takeAwayTitle: "The Slack playbook",
         takeAwayBlocks: [
           {
@@ -652,6 +676,18 @@ export const parts: Part[] = [
         ],
         mistake:
           "Meetings that exist because they are on the calendar. If nobody can say what a recurring meeting is for, it should not survive the next audit.",
+        plumExcerpt: {
+          heading: "How Plum protects deep work",
+          intro:
+            "From Plum's Slack Cheat Code: the etiquette that keeps meetings and notifications from swallowing the day.",
+          items: [
+            "Be mindful of your peers' deep-work zone. @channel notifies everyone in that channel, away or online; @here notifies those online. Use them only when it is relevant to the whole channel.",
+            "@individual or @team when it is relevant to a specific group.",
+            "For a quick call, use a Huddle instead of pulling people into a scheduled meeting.",
+            "Keep your Slack status accurate: active, sick WFH, vacationing, meeting, out of office.",
+            "Going on leave or AFK? Post it in your internal team channel first.",
+          ],
+        },
         takeAwayTitle: "The meetings playbook",
         takeAwayBlocks: [
           {
@@ -732,6 +768,16 @@ export const parts: Part[] = [
         ],
         mistake:
           "Salary conversations, performance feedback, and interpersonal conflict all get resolved in DMs. This is fine until it is not. The absence of a record is felt sharpest when a dispute needs one.",
+        plumExcerpt: {
+          heading: "Plum's open-channel default",
+          intro:
+            "From Plum's Slack Cheat Code, under 'Wisdom beans on maintaining the hygiene':",
+          items: [
+            "'Prefer to communicate in open channels > DMs. We are building a culture of transparency and openness.'",
+            "'One too many messages on the same topic? You end up losing track of important details, and the feed clutters. Instead, start or reply on a thread on your topic of discussion.'",
+            "'Be contextual and respectful in your responses according to the channel. Using a meme in #random is fine; the same in #announcements is not.'",
+          ],
+        },
         takeAwayTitle: "The DM playbook",
         takeAwayBlocks: [
           {
@@ -813,6 +859,17 @@ export const parts: Part[] = [
         ],
         mistake:
           "Founders who message at midnight and then say 'no rush.' The team hears the timestamp, not the disclaimer.",
+        plumExcerpt: {
+          heading: "Plum's Slack hacks for quiet hours",
+          intro:
+            "Concrete tools that Plum's Slack Cheat Code teaches on day one:",
+          items: [
+            "Set a Slack schedule so late notifications do not intrude on personal time.",
+            "Schedule a message for later instead of firing it at midnight and saying 'no rush.'",
+            "Set a reminder against a message to bring it back into your own view without pinging the sender.",
+            "For threads you are not tagged in but want to follow: 'Get notified about new replies' via the message's More Actions, rather than replying 'following'.",
+          ],
+        },
         takeAwayTitle: "The response-time playbook",
         takeAwayBlocks: [
           {
@@ -1050,8 +1107,7 @@ export const sources = [
   },
 ];
 
-// Placeholder for the "How other companies do it" section.
-// Once real examples land, add entries here as { company, docType, blurb, sourceUrl }.
+// "How other companies do it" — the best internal comms docs, with a note on what to steal.
 export const companyExamples: {
   heading: string;
   blurb: string;
@@ -1065,9 +1121,24 @@ export const companyExamples: {
 } = {
   heading: "How other companies do it",
   blurb:
-    "The best internal comms docs from other companies, with a one-paragraph note on what makes each one work. Names, links, and short excerpts.",
-  awaitingContent: true,
-  examples: [],
+    "Two public internal-comms documents worth reading end to end. Both are opinionated, both have been iterated on for years, both are quoted inside the guide above.",
+  awaitingContent: false,
+  examples: [
+    {
+      company: "Basecamp",
+      docType: "How we communicate",
+      blurb:
+        "The clearest short document on async work anywhere on the internet. Basecamp's list of principles — 'meetings are the last resort, not the first option', 'writing solidifies, chat dissolves', 'internal communication based on long-form writing, rather than a real-time chat, is the way' — has shaped the async movement more than any other single piece. Every rule is one line long. Steal the form and the discipline that produced it.",
+      sourceUrl: "https://basecamp.com/guides/how-we-communicate",
+    },
+    {
+      company: "GitLab",
+      docType: "Communication handbook",
+      blurb:
+        "The most exhaustive public handbook on internal communication in any all-remote company. GitLab documents its meeting norms, async defaults, escalation paths, video and chat etiquette, and how to disagree in public. It is long, sometimes unwieldy, and unmatched as a reference. Read the sections on 'informal communication in an all-remote environment' and 'how to send an email' first, and take the shape of the page as a design brief for your own wiki.",
+      sourceUrl: "https://handbook.gitlab.com/handbook/communication/",
+    },
+  ],
 };
 
 // Data for the four interactive elements.
