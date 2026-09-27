@@ -45,8 +45,7 @@ export default function HeadcountStack() {
                 style={{ left: `${pct}%` }}
                 onClick={() => setIndex(i)}
               >
-                <span className="hc-tick-dot" aria-hidden="true"></span>
-                <span className="hc-tick-num">{b.size}</span>
+                {b.size}
               </button>
             );
           })}
@@ -163,8 +162,8 @@ export default function HeadcountStack() {
         /* Tick track: matches the thumb's travel range exactly. */
         .hc-ticks-track {
           position: relative;
-          height: 40px;
-          margin-top: 14px;
+          height: 28px;
+          margin-top: 10px;
         }
         .hc-tick {
           position: absolute;
@@ -172,35 +171,17 @@ export default function HeadcountStack() {
           transform: translateX(-50%);
           background: transparent;
           border: none;
-          display: grid;
-          gap: 4px;
-          justify-items: center;
-          padding: 4px 6px;
+          padding: 6px 4px;
           cursor: pointer;
-          border-radius: 4px;
-        }
-        .hc-tick:hover .hc-tick-num { color: var(--fg-1); }
-        .hc-tick:hover .hc-tick-dot { background: var(--fg-muted); }
-        .hc-tick-dot {
-          width: 6px;
-          height: 6px;
-          border-radius: 50%;
-          background: var(--line-lavender);
-          transition: background 150ms ease-out, transform 150ms ease-out;
-        }
-        .hc-tick-num {
           font-family: var(--font-sans);
           color: var(--fg-muted);
           font-size: 13px;
           font-weight: 500;
-          transform: translateX(5px);
+          line-height: 1;
           transition: color 150ms ease-out;
         }
-        .hc-tick.on .hc-tick-dot {
-          background: var(--plum-red);
-          transform: scale(1.6);
-        }
-        .hc-tick.on .hc-tick-num {
+        .hc-tick:hover { color: var(--fg-1); }
+        .hc-tick.on {
           color: var(--plum-red);
           font-weight: 600;
         }
