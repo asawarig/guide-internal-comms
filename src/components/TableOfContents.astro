@@ -3,26 +3,48 @@ import { parts } from "../content/guide";
 ---
 
 <aside class="toc" aria-label="On this page">
-  <p class="toc-label">On this page</p>
+  <p class="toc-label">The guide</p>
   {
     parts.map((part) => (
       <div class="toc-part">
-        <p class="toc-part-title">
-          Part {part.romanNumeral} · {part.title}
-        </p>
-        {part.sections.map((s) => (
-          <a href={`#${s.id}`} data-toc-link={s.id}>
-            {s.number}. {s.title}
-          </a>
-        ))}
+        <div class="toc-part-head">
+          <span class="toc-part-num">{part.romanNumeral}</span>
+          <span class="toc-part-name">{part.title}</span>
+        </div>
+        <ul class="toc-list">
+          {part.sections.map((s) => (
+            <li>
+              <a href={`#${s.id}`} data-toc-link={s.id}>
+                <span class="toc-num">{s.number}</span>
+                <span class="toc-text">{s.title}</span>
+              </a>
+            </li>
+          ))}
+        </ul>
       </div>
     ))
   }
-  <div class="toc-part">
-    <p class="toc-part-title">Also on this page</p>
-    <a href="#company-examples" data-toc-link="company-examples">How other companies do it</a>
-    <a href="#take-away-pack" data-toc-link="take-away-pack">Take-away pack</a>
-    <a href="#sources" data-toc-link="sources">Sources</a>
+  <div class="toc-part toc-part-extra">
+    <ul class="toc-list">
+      <li>
+        <a href="#company-examples" data-toc-link="company-examples">
+          <span class="toc-num">◆</span>
+          <span class="toc-text">How other companies do it</span>
+        </a>
+      </li>
+      <li>
+        <a href="#take-away-pack" data-toc-link="take-away-pack">
+          <span class="toc-num">✂</span>
+          <span class="toc-text">Take-away pack</span>
+        </a>
+      </li>
+      <li>
+        <a href="#sources" data-toc-link="sources">
+          <span class="toc-num">↗</span>
+          <span class="toc-text">Sources</span>
+        </a>
+      </li>
+    </ul>
   </div>
 </aside>
 
@@ -47,7 +69,7 @@ import { parts } from "../content/guide";
           }
         });
       },
-      { rootMargin: "-40% 0px -55% 0px", threshold: 0 }
+      { rootMargin: "-30% 0px -60% 0px", threshold: 0 }
     );
     byId.forEach(function (_link, id) {
       var el = document.getElementById(id);
