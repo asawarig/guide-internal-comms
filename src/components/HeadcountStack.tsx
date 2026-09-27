@@ -1,9 +1,10 @@
 import { useState } from "react";
 import { headcountBands } from "../content/guide";
 
+const THUMB_RADIUS_PX = 13; // half of the 26px slider thumb
+
 export default function HeadcountStack() {
   const [index, setIndex] = useState(1); // default to 15
-
   const current = headcountBands[index];
   const preview = headcountBands[Math.min(index + 1, headcountBands.length - 1)];
   const atMax = index === headcountBands.length - 1;
@@ -11,13 +12,9 @@ export default function HeadcountStack() {
   return (
     <div className="hc" role="group" aria-label="Your comms stack by headcount">
       <div className="hc-top">
-        <div className="hc-intro">
-          <span className="hc-badge">Interactive</span>
-          <h3 className="hc-title">Your comms stack, by headcount</h3>
-          <p className="hc-sub">
-            Move the slider or tap a size. The guide is written for a range; this is the shortcut to the version for you today.
-          </p>
-        </div>
+        <p className="hc-sub">
+          Move the slider or tap a size. The guide is written for a range; this is the shortcut to the version for you today.
+        </p>
         <div className="hc-value" aria-live="polite">
           <span className="hc-value-num">{current.size}</span>
           <span className="hc-value-unit">people</span>
@@ -35,20 +32,24 @@ export default function HeadcountStack() {
           onChange={(e) => setIndex(Number(e.target.value))}
           className="hc-slider"
         />
-        <div className="hc-ticks" role="tablist">
-          {headcountBands.map((b, i) => (
-            <button
-              type="button"
-              key={b.size}
-              className={"hc-tick" + (i === index ? " on" : "")}
-              role="tab"
-              aria-selected={i === index}
-              onClick={() => setIndex(i)}
-            >
-              <span className="hc-tick-dot" aria-hidden="true"></span>
-              <span className="hc-tick-num">{b.size}</span>
-            </button>
-          ))}
+        <div className="hc-ticks-track">
+          {headcountBands.map((b, i) => {
+            const pct = (i / (headcountBands.length - 1)) * 100;
+            return (
+              <button
+                type="button"
+                key={b.size}
+                className={"hc-tick" + (i === index ? " on" : "")}
+                aria-label={`${b.size} people`}
+                aria-pressed={i === index}
+                style={{ left: `${pct}%` }}
+                onClick={() => setIndex(i)}
+              >
+                <span className="hc-tick-dot" aria-hidden="true"></span>
+                <span className="hc-tick-num">{b.size}</span>
+              </button>
+            );
+          })}
         </div>
       </div>
 
@@ -61,47 +62,28 @@ export default function HeadcountStack() {
           <span className="hc-label">
             {atMax ? "Beyond the guide" : `Add next, by ${preview.size}`}
           </span>
-          <p>{atMax ? "Above 150 you are past the scope of this guide. The rituals hold; the tooling gets heavier." : preview.next}</p>
+          <p>
+            {atMax
+              ? "Above 150 you are past the scope of this guide. The rituals hold; the tooling gets heavier."
+              : preview.next}
+          </p>
         </article>
       </div>
 
       <style>{`
-        .hc {
-          display: grid;
-          gap: 24px;
-        }
+        .hc { display: grid; gap: 28px; }
         .hc-top {
           display: flex;
           align-items: flex-end;
           justify-content: space-between;
-          gap: 20px;
+          gap: 24px;
           flex-wrap: wrap;
-        }
-        .hc-intro { max-width: 44ch; }
-        .hc-badge {
-          display: inline-block;
-          background: var(--plum-red);
-          color: var(--fg-on-red);
-          font-family: var(--font-sans);
-          font-size: 10px;
-          font-weight: 500;
-          letter-spacing: 0.08em;
-          text-transform: uppercase;
-          padding: 4px 10px;
-          border-radius: 1.5px;
-          margin-bottom: 10px;
-        }
-        .hc-title {
-          font-family: var(--font-display);
-          color: var(--fg-1);
-          margin: 0 0 6px;
-          font-size: clamp(22px, 2.6vw, 30px);
-          letter-spacing: -0.03em;
         }
         .hc-sub {
           font-family: var(--font-sans);
           color: var(--fg-2);
           margin: 0;
+          max-width: 44ch;
           font-size: 15px;
           line-height: 1.5;
         }
@@ -109,6 +91,7 @@ export default function HeadcountStack() {
           text-align: right;
           display: grid;
           gap: 2px;
+          justify-items: end;
         }
         .hc-value-num {
           font-family: var(--font-display);
@@ -127,7 +110,7 @@ export default function HeadcountStack() {
         }
 
         .hc-track {
-          padding: 24px 12px 8px;
+          padding: 20px ${THUMB_RADIUS_PX}px 6px;
           background: var(--cream);
           border: 1px solid var(--line-lavender);
           border-radius: 7px;
@@ -177,23 +160,27 @@ export default function HeadcountStack() {
           outline-offset: 2px;
         }
 
-        .hc-ticks {
-          display: grid;
-          grid-template-columns: repeat(${headcountBands.length}, 1fr);
-          gap: 4px;
-          margin-top: 12px;
+        /* Tick track: matches the thumb's travel range exactly. */
+        .hc-ticks-track {
+          position: relative;
+          height: 40px;
+          margin-top: 14px;
         }
         .hc-tick {
+          position: absolute;
+          top: 0;
+          transform: translateX(-50%);
           background: transparent;
           border: none;
           display: grid;
           gap: 4px;
           justify-items: center;
-          padding: 4px 0 6px;
+          padding: 4px 6px;
           cursor: pointer;
           border-radius: 4px;
-          transition: color 150ms ease-out;
         }
+        .hc-tick:hover .hc-tick-num { color: var(--fg-1); }
+        .hc-tick:hover .hc-tick-dot { background: var(--fg-muted); }
         .hc-tick-dot {
           width: 6px;
           height: 6px;
@@ -208,8 +195,6 @@ export default function HeadcountStack() {
           font-weight: 500;
           transition: color 150ms ease-out;
         }
-        .hc-tick:hover .hc-tick-num { color: var(--fg-1); }
-        .hc-tick:hover .hc-tick-dot { background: var(--fg-muted); }
         .hc-tick.on .hc-tick-dot {
           background: var(--plum-red);
           transform: scale(1.6);
@@ -222,16 +207,16 @@ export default function HeadcountStack() {
         .hc-cards {
           display: grid;
           grid-template-columns: 1fr;
-          gap: 14px;
+          gap: 16px;
         }
         @media (min-width: 720px) {
-          .hc-cards { grid-template-columns: 1.3fr 1fr; }
+          .hc-cards { grid-template-columns: 1.35fr 1fr; }
         }
         .hc-card {
           background: var(--cream);
           border: 1px solid var(--line-lavender);
           border-radius: 7px;
-          padding: 18px 20px;
+          padding: 20px 22px;
         }
         .hc-card p {
           margin: 8px 0 0;
@@ -249,9 +234,7 @@ export default function HeadcountStack() {
           color: var(--plum-red);
           font-weight: 500;
         }
-        .hc-next {
-          border-style: dashed;
-        }
+        .hc-next { border-style: dashed; }
         .hc-next .hc-label { color: var(--fg-muted); }
       `}</style>
     </div>

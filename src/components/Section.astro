@@ -16,82 +16,80 @@ const { section } = Astro.props;
   <h2 class="section-title">{section.title}</h2>
   <hr class="section-rule" />
 
-  <div class="section-body">
-    <div class="prose">
-      <p class="subhead">Why it matters</p>
-      <p set:html={section.why}></p>
+  <div class="prose">
+    <p class="subhead">Why it matters</p>
+    <p set:html={section.why}></p>
 
-      <p class="subhead">What good looks like</p>
-      <p class="what-good" set:html={section.whatGood}></p>
+    <p class="subhead">What good looks like</p>
+    <p class="what-good" set:html={section.whatGood}></p>
 
-      <p class="subhead">By team size</p>
-      <div class="bands">
-        {section.bands.map((band) => (
-          <article class="band">
-            <span class="band-range">{band.range}</span>
-            <span class="band-size">{band.label}</span>
-            <p class="band-body">{band.body}</p>
-          </article>
-        ))}
-      </div>
-
-      <p class="subhead">Common mistake</p>
-      <div class="mistake">
-        <span class="label">Where founders trip</span>
-        <p set:html={section.mistake}></p>
-      </div>
-
-      {section.plumExcerpt && (
-        <>
-          <p class="subhead">How Plum does it</p>
-          <aside class="plum-excerpt">
-            <span class="label">Excerpt · Plum's internal Slack cheat code</span>
-            {section.plumExcerpt.heading && <h4>{section.plumExcerpt.heading}</h4>}
-            {section.plumExcerpt.intro && <p>{section.plumExcerpt.intro}</p>}
-            {section.plumExcerpt.items && (
-              <ul>
-                {section.plumExcerpt.items.map((item) => <li>{item}</li>)}
-              </ul>
-            )}
-          </aside>
-        </>
-      )}
-
-      <p class="subhead">Take this with you</p>
-      <div class="take-away">
-        <span class="label">Copy me</span>
-        <h4>{section.takeAwayTitle}</h4>
-        {section.takeAwayBlocks.map((block) => (
-          <div class="take-away-block">
-            <p class="take-away-sub">{block.subheading}</p>
-            {block.intro && <p class="take-away-intro">{block.intro}</p>}
-            {block.items && (
-              <ul>
-                {block.items.map((item) => <li>{item}</li>)}
-              </ul>
-            )}
-          </div>
-        ))}
-      </div>
-
-      {section.interactiveSlot === "what-goes-where" && (
-        <div class="interactive-frame">
-          <WhatGoesWhere client:visible />
-        </div>
-      )}
-
-      {section.interactiveSlot === "decision-tree" && (
-        <div class="interactive-frame">
-          <DecisionTree client:visible />
-        </div>
-      )}
-
-      {section.interactiveSlot === "response-policy" && (
-        <div class="interactive-frame">
-          <ResponsePolicy client:visible />
-        </div>
-      )}
+    <p class="subhead">By team size</p>
+    <div class="bands">
+      {section.bands.map((band) => (
+        <article class="band">
+          <span class="band-range">{band.range}</span>
+          <span class="band-size">{band.label}</span>
+          <p class="band-body">{band.body}</p>
+        </article>
+      ))}
     </div>
+
+    <p class="subhead">Common mistake</p>
+    <div class="mistake">
+      <span class="label">Where founders trip</span>
+      <p set:html={section.mistake}></p>
+    </div>
+
+    {section.plumExcerpt && (
+      <>
+        <p class="subhead">How Plum does it</p>
+        <aside class="plum-excerpt">
+          <span class="label">Excerpt · Plum's internal Slack cheat code</span>
+          {section.plumExcerpt.heading && <h4>{section.plumExcerpt.heading}</h4>}
+          {section.plumExcerpt.intro && <p>{section.plumExcerpt.intro}</p>}
+          {section.plumExcerpt.items && (
+            <ul>
+              {section.plumExcerpt.items.map((item) => <li>{item}</li>)}
+            </ul>
+          )}
+        </aside>
+      </>
+    )}
+
+    <p class="subhead">Take this with you</p>
+    <div class="take-away">
+      <span class="label">Copy me</span>
+      <h4>{section.takeAwayTitle}</h4>
+      {section.takeAwayBlocks.map((block) => (
+        <div class="take-away-block">
+          <p class="take-away-sub">{block.subheading}</p>
+          {block.intro && <p class="take-away-intro">{block.intro}</p>}
+          {block.items && (
+            <ul>
+              {block.items.map((item) => <li>{item}</li>)}
+            </ul>
+          )}
+        </div>
+      ))}
+    </div>
+
+    {section.interactiveSlot === "what-goes-where" && (
+      <div class="interactive-frame">
+        <WhatGoesWhere client:visible />
+      </div>
+    )}
+
+    {section.interactiveSlot === "decision-tree" && (
+      <div class="interactive-frame">
+        <DecisionTree client:visible />
+      </div>
+    )}
+
+    {section.interactiveSlot === "response-policy" && (
+      <div class="interactive-frame">
+        <ResponsePolicy client:visible />
+      </div>
+    )}
 
     <aside class="editors-note">
       <span class="editors-note-label">Editor's note</span>
