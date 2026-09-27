@@ -570,6 +570,10 @@ p {
   margin-top: 0;
 }
 
+.subhead-cushioned {
+  padding-top: 10px;
+}
+
 .what-good {
   font-family: var(--font-display);
   font-size: clamp(18px, 2vw, 22px);
