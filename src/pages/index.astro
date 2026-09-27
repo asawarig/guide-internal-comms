@@ -6,7 +6,7 @@ import PartArt from "../components/PartArt.astro";
 import ArrowRule from "../components/ArrowRule.astro";
 import TableOfContents from "../components/TableOfContents.astro";
 import HeadcountStack from "../components/HeadcountStack.tsx";
-import { companyExamples, intro, meta, parts, promise, sources } from "../content/guide";
+import { companyExamples, intro, meta, parts, sources } from "../content/guide";
 
 const base = import.meta.env.BASE_URL.replace(/\/?$/, "/");
 const toolkitHref = `${base}${meta.toolkitFileName}`;
@@ -54,18 +54,6 @@ const toolkitHref = `${base}${meta.toolkitFileName}`;
           <hr class="section-rule" />
           <div class="prose">
             {intro.paragraphs.map((p) => <p set:html={p} />)}
-          </div>
-        </section>
-
-        <section id="promise" class="section">
-          <div class="promise">
-            <span class="eyebrow">Reader promise</span>
-            <h2>{promise.heading}</h2>
-            <p style="margin-top:0; font-family: var(--font-sans); font-size: 15px;">{promise.intro}</p>
-            <ul>
-              {promise.items.map((i) => <li>{i}</li>)}
-            </ul>
-            <p class="outro">{promise.outro}</p>
           </div>
         </section>
 

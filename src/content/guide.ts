@@ -14,20 +14,8 @@ export const intro = {
   paragraphs: [
     "Every Indian startup has an internal comms system. Almost none of them chose it. The channels, the meeting cadence, the response-time norms were inherited from whoever set up Slack first, and they hardened into culture. It is the equivalent of moving into a house and never rearranging the furniture. You live around the shape of what someone else decided.",
     "The bill for this shows up late. Employees miss things they should have seen. Decisions get made in DMs and evaporate before the record forms. The founder becomes the human router, forwarding messages between teams that could just be talking. By the time it hurts, it has been that way for a year, and unlearning it feels harder than it should.",
-    "This guide is a chance to design it on purpose. It is staged by team size, sourced where sources help, and full of things you can copy today. Pick your headcount, open the sections you have been avoiding, and steal the templates at the bottom. If any of it makes you say <em>we already do the opposite of this</em>, that is the point.",
+    "This guide is a chance to design it on purpose. It is staged by team size, sourced where sources help, and full of things you can copy this week. Pick your headcount, open the sections you have been avoiding, and steal the templates at the bottom. The tone is a friend who has done this before, not a consultant selling a framework. If any of it makes you say <em>we already do the opposite of this</em>, that is the point.",
   ],
-};
-
-export const promise = {
-  heading: "Reader promise",
-  intro: "A founder or head of ops with 5 to 150 employees finishes this page knowing:",
-  items: [
-    "What internal comms setup they should have in place today, given their team size.",
-    "What to add next as they grow.",
-    "Which mistakes to avoid before they harden into culture.",
-    "What to copy-paste to get started this week.",
-  ],
-  outro: "The tone is a friend who has done this before, not a consultant selling a framework.",
 };
 
 // A block inside a section's take-away. Renders as a subheading with either
