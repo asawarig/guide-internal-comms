@@ -1,146 +1,103 @@
 ---
 import Base from "../layouts/Base.astro";
-import Section from "../components/Section.astro";
-import HeroArt from "../components/HeroArt.astro";
-import PartArt from "../components/PartArt.astro";
-import ArrowRule from "../components/ArrowRule.astro";
-import TableOfContents from "../components/TableOfContents.astro";
-import HeadcountStack from "../components/HeadcountStack.tsx";
-import { companyExamples, intro, meta, parts, sources } from "../content/guide";
+import Issue from "../components/Issue.tsx";
+import { meta, parts } from "../content/guide";
 
 const base = import.meta.env.BASE_URL.replace(/\/?$/, "/");
 const toolkitHref = `${base}${meta.toolkitFileName}`;
+const archiveHref = `${base}full/`;
+
+const today = new Date();
+const issueDate = today.toLocaleDateString("en-GB", {
+  month: "long",
+  year: "numeric",
+});
 ---
 
-<Base>
-  <!-- Mobile pill nav -->
-  <nav class="top-nav" aria-label="Sections">
-    <div class="top-nav-inner">
-      {
-        parts.flatMap((part) =>
-          part.sections.map((s) => (
-            <a href={`#${s.id}`}>
-              {s.number}. {s.title}
-            </a>
-          ))
-        )
-      }
+<Base title="+ Everyone — a Plum publication on internal comms">
+  <!-- Masthead -->
+  <header class="masthead" aria-label="Masthead">
+    <div class="masthead-top">
+      <span class="masthead-slug">A Plum publication</span>
+      <span class="masthead-slug masthead-slug-right">Issue 01 · {issueDate}</span>
     </div>
-  </nav>
+    <div class="masthead-wordmark">
+      <span class="masthead-plus" aria-hidden="true">+</span>
+      <span class="masthead-name">Everyone</span>
+    </div>
+    <p class="masthead-tagline">
+      A field guide to internal communications for Indian startups.
+      <em>Yes, you were CC'd on purpose.</em>
+    </p>
+    <div class="masthead-rule" aria-hidden="true"></div>
+    <div class="masthead-bottom">
+      <span>Vol. 01 · For founders, heads of ops and heads of people</span>
+      <span>From 5 to 150 people · Printed on screens near you</span>
+    </div>
+  </header>
 
-  <div class="wrap">
-    <section class="hero hero-plain">
-      <span class="eyebrow">Plum · Library · Internal comms</span>
-      <h1 class="hero-title">
-        The Plum guide to internal <em class="headline-emphasis">communications</em>
+  <!-- Hero spread -->
+  <section class="spread" aria-labelledby="cover-line">
+    <div class="spread-left">
+      <span class="spread-dept">The cover story</span>
+      <h1 id="cover-line" class="spread-headline">
+        Your internal comms, <em>in print</em>, in about <span class="spread-figure">90</span> seconds.
       </h1>
-      <p class="hero-standfirst">{meta.tagline}</p>
-      <a class="btn btn-primary" href="#why">start reading</a>
-    </section>
-    <ArrowRule variant="lavender" />
-  </div>
-
-  <div class="wrap">
-    <div class="layout">
-      <TableOfContents />
-
-      <div class="editorial">
-        <section id="why" class="section" style="border-top: none; padding-top: 8px;">
-          <span class="section-eyebrow">Introduction</span>
-          <h2 class="section-title">{intro.heading}</h2>
-          <hr class="section-rule" />
-          <div class="prose">
-            {intro.paragraphs.map((p) => <p set:html={p} />)}
-          </div>
-        </section>
-
-        <section id="headcount" class="section">
-          <span class="section-eyebrow">Interactive</span>
-          <h2 class="section-title">Your comms stack, by headcount</h2>
-          <hr class="section-rule" />
-          <div class="interactive-frame">
-            <HeadcountStack client:load />
-          </div>
-        </section>
-
-        {
-          parts.map((part) => (
-            <>
-              <header id={part.id} class="part-opener">
-                <span class="eyebrow">Part {part.romanNumeral}</span>
-                <span class="part-numeral">{part.romanNumeral}</span>
-                <PartArt variant={part.id as "rituals" | "tools" | "norms"} />
-                <div class="part-title">
-                  <h2>{part.title}</h2>
-                  <p>{part.blurb}</p>
-                </div>
-              </header>
-              {part.sections.map((section) => (
-                <Section section={section} />
-              ))}
-            </>
-          ))
-        }
-
-        <section id="company-examples" class="pack">
-          <span class="eyebrow">In the wild</span>
-          <h2 class="section-title">{companyExamples.heading}</h2>
-          <hr class="section-rule" />
-          <p class="pack-lead">{companyExamples.blurb}</p>
-          {companyExamples.awaitingContent ? (
-            <div class="examples-empty" style="margin-top: 20px;">
-              <h3>Coming next</h3>
-              <p>Examples will land here once they are gathered.</p>
-            </div>
-          ) : (
-            <div class="pack-grid" style="grid-template-columns: 1fr;">
-              {companyExamples.examples.map((ex) => (
-                <a class="example" href={ex.sourceUrl} rel="noopener" target="_blank">
-                  <div class="example-head">
-                    <h3 class="example-name">{ex.company}</h3>
-                    <span class="example-type">{ex.docType}</span>
-                  </div>
-                  <p class="example-body">{ex.blurb}</p>
-                  {ex.sourceUrl && <span class="example-source">{ex.sourceUrl.replace(/^https?:\/\//, "")}</span>}
-                </a>
-              ))}
-            </div>
-          )}
-        </section>
-
-        <section id="take-away-pack" class="pack">
-          <span class="eyebrow">Take-away pack</span>
-          <h2 class="section-title">One document, twelve playbooks</h2>
-          <hr class="section-rule" />
-          <p class="pack-lead">
-            Every checklist, script, and template from the guide in a single editable Word document. Change what does not fit you, print what does, hand it to your next hire.
-          </p>
-
-          <div class="download-band">
-            <div>
-              <h3>The internal comms toolkit</h3>
-              <p>Twelve playbooks, forty-plus checklists, every script from the guide. Word, editable, one download.</p>
-            </div>
-            <a class="btn" href={toolkitHref} download={meta.toolkitFileName}>download .docx</a>
-          </div>
-        </section>
-
-        <section id="sources" class="sources">
-          <span class="eyebrow">Sources</span>
-          <hr class="section-rule" />
-          <p>Primary sources only. Every stat on this page traces back to one of the reports below.</p>
-          <ol>
-            {
-              sources.map((s) => (
-                <li>
-                  <strong>{s.label}. </strong>
-                  {s.detail}
-                </li>
-              ))
-            }
-          </ol>
-        </section>
-      </div>
+      <p class="spread-standfirst">
+        Startups do not design their comms. They inherit them from whoever set up Slack first.
+        This issue is the fix: pick your situation, we print your playbook. No fluff, no DMs at midnight.
+      </p>
+      <ul class="spread-list">
+        <li><span>&#x271A;</span> Based on the full twelve-chapter Plum guide.</li>
+        <li><span>&#x271A;</span> Tuned to your stage, size, work mode, geography.</li>
+        <li><span>&#x271A;</span> Includes a one-week action list and a .docx toolkit.</li>
+      </ul>
     </div>
+    <aside class="spread-right" aria-label="This issue">
+      <span class="spread-dept">In this issue</span>
+      <ul class="spread-contents">
+        <li><em>I.</em> The rituals: all-hands, async updates, weekly round-up</li>
+        <li><em>II.</em> The tools: Slack, docs, announcements, WhatsApp</li>
+        <li><em>III.</em> The norms: meetings, DMs, response time, feedback</li>
+        <li class="spread-contents-rule" aria-hidden="true"></li>
+        <li><em>IV.</em> How other companies do it</li>
+        <li><em>V.</em> The take-away pack — one .docx, twelve playbooks</li>
+      </ul>
+      <a class="spread-full-link" href={archiveHref}>
+        Prefer the whole archive? <span>Browse all twelve sections →</span>
+      </a>
+    </aside>
+  </section>
+
+  <!-- Configurator + Playbook island -->
+  <div class="issue-shell">
+    <Issue parts={parts} archiveHref={archiveHref} toolkitHref={toolkitHref} client:load />
   </div>
+
+  <!-- Colophon -->
+  <footer class="colophon" aria-label="Colophon">
+    <div class="colophon-row">
+      <span class="colophon-slug">Colophon</span>
+      <p>
+        <em>+ Everyone</em> is a one-off issue from the Plum content desk.
+        Typeset in GT Alpina and Passenger Sans. Printed in cream, plum red and
+        ochre. Fact-checked against primary sources only.
+      </p>
+    </div>
+    <div class="colophon-row">
+      <span class="colophon-slug">Credits</span>
+      <p>
+        Research and words: Plum editorial.<br />
+        Design: Plum web.<br />
+        Comms suggestions, grievances, counter-arguments: welcome.
+      </p>
+    </div>
+    <div class="colophon-row">
+      <span class="colophon-slug">The rest of the archive</span>
+      <p>
+        <a href={archiveHref}>Open the full guide →</a><br />
+        <a href={toolkitHref} download={meta.toolkitFileName}>Download the .docx toolkit →</a>
+      </p>
+    </div>
+  </footer>
 </Base>

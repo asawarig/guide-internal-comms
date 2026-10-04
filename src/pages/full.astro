@@ -1,0 +1,148 @@
+---
+import Base from "../layouts/Base.astro";
+import Section from "../components/Section.astro";
+import PartArt from "../components/PartArt.astro";
+import ArrowRule from "../components/ArrowRule.astro";
+import TableOfContents from "../components/TableOfContents.astro";
+import HeadcountStack from "../components/HeadcountStack.tsx";
+import { companyExamples, intro, meta, parts, sources } from "../content/guide";
+
+const base = import.meta.env.BASE_URL.replace(/\/?$/, "/");
+const toolkitHref = `${base}${meta.toolkitFileName}`;
+const magazineHref = base;
+---
+
+<Base title="The full internal comms guide · + Everyone">
+  <nav class="top-nav" aria-label="Sections">
+    <div class="top-nav-inner">
+      <a href={magazineHref} class="top-nav-back">← back to the issue</a>
+      {
+        parts.flatMap((part) =>
+          part.sections.map((s) => (
+            <a href={`#${s.id}`}>
+              {s.number}. {s.title}
+            </a>
+          ))
+        )
+      }
+    </div>
+  </nav>
+
+  <div class="wrap">
+    <section class="hero hero-plain">
+      <span class="eyebrow">+ Everyone · Reference · The full guide</span>
+      <h1 class="hero-title">
+        The whole <em class="headline-emphasis">archive</em>
+      </h1>
+      <p class="hero-standfirst">
+        Twelve sections, every band, every take-away. Jump in anywhere. Or
+        <a href={magazineHref}>build your issue</a> if you want the shorter cut.
+      </p>
+    </section>
+    <ArrowRule variant="lavender" />
+  </div>
+
+  <div class="wrap">
+    <div class="layout">
+      <TableOfContents />
+
+      <div class="editorial">
+        <section id="why" class="section" style="border-top: none; padding-top: 8px;">
+          <span class="section-eyebrow">Introduction</span>
+          <h2 class="section-title">{intro.heading}</h2>
+          <hr class="section-rule" />
+          <div class="prose">
+            {intro.paragraphs.map((p) => <p set:html={p} />)}
+          </div>
+        </section>
+
+        <section id="headcount" class="section">
+          <span class="section-eyebrow">Interactive</span>
+          <h2 class="section-title">Your comms stack, by headcount</h2>
+          <hr class="section-rule" />
+          <div class="interactive-frame">
+            <HeadcountStack client:load />
+          </div>
+        </section>
+
+        {
+          parts.map((part) => (
+            <>
+              <header id={part.id} class="part-opener">
+                <span class="eyebrow">Part {part.romanNumeral}</span>
+                <span class="part-numeral">{part.romanNumeral}</span>
+                <PartArt variant={part.id as "rituals" | "tools" | "norms"} />
+                <div class="part-title">
+                  <h2>{part.title}</h2>
+                  <p>{part.blurb}</p>
+                </div>
+              </header>
+              {part.sections.map((section) => (
+                <Section section={section} />
+              ))}
+            </>
+          ))
+        }
+
+        <section id="company-examples" class="pack">
+          <span class="eyebrow">In the wild</span>
+          <h2 class="section-title">{companyExamples.heading}</h2>
+          <hr class="section-rule" />
+          <p class="pack-lead">{companyExamples.blurb}</p>
+          {companyExamples.awaitingContent ? (
+            <div class="examples-empty" style="margin-top: 20px;">
+              <h3>Coming next</h3>
+              <p>Examples will land here once they are gathered.</p>
+            </div>
+          ) : (
+            <div class="pack-grid" style="grid-template-columns: 1fr;">
+              {companyExamples.examples.map((ex) => (
+                <a class="example" href={ex.sourceUrl} rel="noopener" target="_blank">
+                  <div class="example-head">
+                    <h3 class="example-name">{ex.company}</h3>
+                    <span class="example-type">{ex.docType}</span>
+                  </div>
+                  <p class="example-body">{ex.blurb}</p>
+                  {ex.sourceUrl && <span class="example-source">{ex.sourceUrl.replace(/^https?:\/\//, "")}</span>}
+                </a>
+              ))}
+            </div>
+          )}
+        </section>
+
+        <section id="take-away-pack" class="pack">
+          <span class="eyebrow">Take-away pack</span>
+          <h2 class="section-title">One document, twelve playbooks</h2>
+          <hr class="section-rule" />
+          <p class="pack-lead">
+            Every checklist, script, and template from the guide in a single editable Word document. Change what does not fit you, print what does, hand it to your next hire.
+          </p>
+
+          <div class="download-band">
+            <div>
+              <h3>The internal comms toolkit</h3>
+              <p>Twelve playbooks, forty-plus checklists, every script from the guide. Word, editable, one download.</p>
+            </div>
+            <a class="btn" href={toolkitHref} download={meta.toolkitFileName}>download .docx</a>
+          </div>
+        </section>
+
+        <section id="sources" class="sources">
+          <span class="eyebrow">Sources</span>
+          <hr class="section-rule" />
+          <p>Primary sources only. Every stat on this page traces back to one of the reports below.</p>
+          <ol>
+            {
+              sources.map((s) => (
+                <li>
+                  <strong>{s.label}. </strong>
+                  {s.detail}
+                </li>
+              ))
+            }
+          </ol>
+        </section>
+      </div>
+    </div>
+  </div>
+</Base>
