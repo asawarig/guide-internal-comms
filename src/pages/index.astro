@@ -6,65 +6,60 @@ import { meta, parts } from "../content/guide";
 const base = import.meta.env.BASE_URL.replace(/\/?$/, "/");
 const toolkitHref = `${base}${meta.toolkitFileName}`;
 const archiveHref = `${base}full/`;
-
-const today = new Date();
-const issueDate = today.toLocaleDateString("en-GB", {
-  month: "long",
-  year: "numeric",
-});
 ---
 
-<Base title="+ Everyone — a Plum publication on internal comms">
+<Base title="The Internal Comms Blueprint · a Plum guide">
   <!-- Masthead -->
   <header class="masthead" aria-label="Masthead">
     <div class="masthead-top">
-      <span class="masthead-slug">A Plum publication</span>
-      <span class="masthead-slug masthead-slug-right">Issue 01 · {issueDate}</span>
+      <span class="masthead-slug">Plum · Library · Internal comms</span>
+      <span class="masthead-slug masthead-slug-right">A build-your-own guide</span>
     </div>
-    <div class="masthead-wordmark">
-      <span class="masthead-plus" aria-hidden="true">+</span>
-      <span class="masthead-name">Everyone</span>
+    <div class="masthead-wordmark masthead-wordmark-title">
+      <h1 class="masthead-title">
+        The Internal Comms <em>Blueprint</em>
+      </h1>
     </div>
     <p class="masthead-tagline">
-      A field guide to internal communications for Indian startups.
-      <em>Yes, you were CC'd on purpose.</em>
+      Pick your stage, size and shape. Plum builds the comms playbook
+      <em>that fits.</em>
     </p>
     <div class="masthead-rule" aria-hidden="true"></div>
     <div class="masthead-bottom">
-      <span>Vol. 01 · For founders, heads of ops and heads of people</span>
-      <span>From 5 to 150 people · Printed on screens near you</span>
+      <span>For founders, heads of ops and heads of people</span>
+      <span>Indian startups · 5 to 150 people</span>
     </div>
   </header>
 
   <!-- Hero spread -->
   <section class="spread" aria-labelledby="cover-line">
     <div class="spread-left">
-      <span class="spread-dept">The cover story</span>
-      <h1 id="cover-line" class="spread-headline">
-        Your internal comms, <em>in print</em>, in about <span class="spread-figure">90</span> seconds.
-      </h1>
+      <span class="spread-dept">What this is</span>
+      <h2 id="cover-line" class="spread-headline">
+        A comms playbook, <em>built around you</em>, in about <span class="spread-figure">90</span> seconds.
+      </h2>
       <p class="spread-standfirst">
-        Startups do not design their comms. They inherit them from whoever set up Slack first.
-        This issue is the fix: pick your situation, we print your playbook. No fluff, no DMs at midnight.
+        Startups don't design their internal comms. They inherit them from whoever set up Slack first.
+        The Blueprint fixes that: pick your situation, we build the playbook you'd actually run next week.
       </p>
       <ul class="spread-list">
-        <li><span>&#x271A;</span> Based on the full twelve-chapter Plum guide.</li>
-        <li><span>&#x271A;</span> Tuned to your stage, size, work mode, geography.</li>
-        <li><span>&#x271A;</span> Includes a one-week action list and a .docx toolkit.</li>
+        <li><span>&#x2192;</span> Drawn from the full twelve-section Plum guide.</li>
+        <li><span>&#x2192;</span> Tuned to your stage, size, work mode and geography.</li>
+        <li><span>&#x2192;</span> Comes with a one-week action list and a .docx toolkit.</li>
       </ul>
     </div>
-    <aside class="spread-right" aria-label="This issue">
-      <span class="spread-dept">In this issue</span>
+    <aside class="spread-right" aria-label="What's inside">
+      <span class="spread-dept">What's inside</span>
       <ul class="spread-contents">
         <li><em>I.</em> The rituals: all-hands, async updates, weekly round-up</li>
         <li><em>II.</em> The tools: Slack, docs, announcements, WhatsApp</li>
         <li><em>III.</em> The norms: meetings, DMs, response time, feedback</li>
         <li class="spread-contents-rule" aria-hidden="true"></li>
         <li><em>IV.</em> How other companies do it</li>
-        <li><em>V.</em> The take-away pack — one .docx, twelve playbooks</li>
+        <li><em>V.</em> The take-away pack: one .docx, twelve playbooks</li>
       </ul>
       <a class="spread-full-link" href={archiveHref}>
-        Prefer the whole archive? <span>Browse all twelve sections →</span>
+        Prefer the whole library? <span>Browse all twelve sections →</span>
       </a>
     </aside>
   </section>
@@ -77,11 +72,11 @@ const issueDate = today.toLocaleDateString("en-GB", {
   <!-- Colophon -->
   <footer class="colophon" aria-label="Colophon">
     <div class="colophon-row">
-      <span class="colophon-slug">Colophon</span>
+      <span class="colophon-slug">About this guide</span>
       <p>
-        <em>+ Everyone</em> is a one-off issue from the Plum content desk.
-        Typeset in GT Alpina and Passenger Sans. Printed in cream, plum red and
-        ochre. Fact-checked against primary sources only.
+        <em>The Internal Comms Blueprint</em> is a Plum tool. It draws on the full
+        internal-comms guide and tunes the output to your picks. Fact-checked
+        against primary sources only.
       </p>
     </div>
     <div class="colophon-row">
@@ -93,7 +88,7 @@ const issueDate = today.toLocaleDateString("en-GB", {
       </p>
     </div>
     <div class="colophon-row">
-      <span class="colophon-slug">The rest of the archive</span>
+      <span class="colophon-slug">The rest of the library</span>
       <p>
         <a href={archiveHref}>Open the full guide →</a><br />
         <a href={toolkitHref} download={meta.toolkitFileName}>Download the .docx toolkit →</a>

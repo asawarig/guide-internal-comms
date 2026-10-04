@@ -28,7 +28,12 @@ type Props = {
   toolkitHref: string;
 };
 
-const ROMAN = ["I", "II", "III", "IV", "V", "VI", "VII", "VIII"];
+// Single-digit margin numeral. We cap selections at 7 sections, so one
+// glyph is always enough — keeps the big italic numeral narrow and well
+// clear of the body column.
+function marginNumeral(i: number): string {
+  return String(i + 1).padStart(2, "0");
+}
 
 export default function Issue({ parts, archiveHref, toolkitHref }: Props) {
   const [stage, setStage] = useState<Stage | null>(null);
@@ -60,11 +65,11 @@ export default function Issue({ parts, archiveHref, toolkitHref }: Props) {
 
   return (
     <>
-      <section className={`configurator ${built ? "configurator-stuck" : ""}`} aria-labelledby="build-your-issue">
+      <section className={`configurator ${built ? "configurator-stuck" : ""}`} aria-labelledby="build-your-blueprint">
         <div className="config-head">
           <span className="config-eyebrow">The configurator</span>
-          <h2 id="build-your-issue" className="config-title">
-            Build <em>your</em> issue
+          <h2 id="build-your-blueprint" className="config-title">
+            Build <em>your</em> blueprint
           </h2>
           <p className="config-standfirst">
             Five picks. We turn them into the comms playbook you'd actually run next week.
@@ -140,11 +145,11 @@ export default function Issue({ parts, archiveHref, toolkitHref }: Props) {
             disabled={!ready}
             onClick={() => setBuilt(true)}
           >
-            {built ? "Rebuild my issue" : "Print my issue"}
+            {built ? "Rebuild my blueprint" : "Build my blueprint"}
           </button>
           {built && (
             <button className="btn btn-ghost" onClick={reset} type="button">
-              Hide the spread
+              Hide the blueprint
             </button>
           )}
           {!ready && (
@@ -232,16 +237,16 @@ function Playbook({
   return (
     <article className="playbook" aria-live="polite">
       <header className="playbook-head">
-        <span className="playbook-slug">Issue 01 · Printed for you</span>
+        <span className="playbook-slug">Built for you</span>
         <h2 className="playbook-title">
-          <em>Your</em> comms stack, in print
+          <em>Your</em> comms blueprint
         </h2>
         <p className="playbook-standfirst">
           A {stagePhrase(picks.stage)}, {sizePhrase(picks.size)}, {modePhrase(picks.workMode)}, {geoPhrase(picks.geography)} outfit. Here are the {sections.length}{" "}
           sections of the guide that matter most for your week.
         </p>
         <div className="playbook-byline">
-          <span>Byline: The Plum editorial desk</span>
+          <span>From the Plum editorial desk</span>
           <span className="playbook-byline-sep">·</span>
           <span>
             Fixing:{" "}
@@ -257,10 +262,10 @@ function Playbook({
         {sections.map((s, i) => (
           <li className="chapter" key={s.id} id={`playbook-${s.id}`}>
             <aside className="chapter-numeral" aria-hidden="true">
-              {ROMAN[i] ?? i + 1}
+              {marginNumeral(i)}
             </aside>
             <div className="chapter-body">
-              <span className="chapter-slug">Chapter {i + 1} · {s.title}</span>
+              <span className="chapter-slug">No. {i + 1} · {s.title}</span>
               <h3 className="chapter-title">{s.title}</h3>
               <p className="chapter-rationale">
                 <span className="chapter-rationale-label">Why for you.</span>{" "}
@@ -321,7 +326,7 @@ function Playbook({
 
       <section className="playbook-weekahead">
         <span className="playbook-slug">The week ahead</span>
-        <h3>Pick one. Start Monday.</h3>
+        <h3>Pick one. <em>Start Monday.</em></h3>
         <ol>
           {sections.map((s) => (
             <li key={s.id}>
@@ -335,11 +340,11 @@ function Playbook({
       <section className="playbook-closer">
         <div>
           <h3>Take the toolkit</h3>
-          <p>Every checklist and script from the guide in one editable Word document.</p>
+          <p>Every checklist and script from the guide in one editable Word document. Covers the whole library, not just your picks. Handy to send around a team.</p>
           <a className="btn btn-primary" href={toolkitHref}>Download the full toolkit (.docx)</a>
         </div>
         <div>
-          <h3>Browse the archive</h3>
+          <h3>Browse the library</h3>
           <p>Twelve sections, every band, every take-away.</p>
           <a className="btn btn-ghost" href={archiveHref}>Open the full guide →</a>
         </div>
