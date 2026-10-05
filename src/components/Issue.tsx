@@ -42,6 +42,10 @@ export default function Issue({ parts, archiveHref, toolkitHref }: Props) {
   const [geo, setGeo] = useState<Geography | null>(null);
   const [priorities, setPriorities] = useState<Priority[]>([]);
   const [built, setBuilt] = useState(false);
+  // Increments on every Build / Rebuild click. Playbook watches it to
+  // scroll itself into view after each build, including rebuilds (where
+  // `built` stays true so a plain [built] effect wouldn't re-fire).
+  const [buildTick, setBuildTick] = useState(0);
 
   const ready = !!stage && !!size && !!mode && !!geo && priorities.length > 0;
 
@@ -57,6 +61,11 @@ export default function Issue({ parts, archiveHref, toolkitHref }: Props) {
       if (prev.length >= 3) return prev;
       return [...prev, p];
     });
+  }
+
+  function build() {
+    setBuilt(true);
+    setBuildTick((t) => t + 1);
   }
 
   function reset() {
@@ -143,7 +152,7 @@ export default function Issue({ parts, archiveHref, toolkitHref }: Props) {
           <button
             className="btn btn-build"
             disabled={!ready}
-            onClick={() => setBuilt(true)}
+            onClick={build}
           >
             {built ? "Rebuild my blueprint" : "Build my blueprint"}
           </button>
@@ -166,6 +175,7 @@ export default function Issue({ parts, archiveHref, toolkitHref }: Props) {
           sections={ranked}
           toolkitHref={toolkitHref}
           archiveHref={archiveHref}
+          buildTick={buildTick}
         />
       )}
     </>
@@ -226,15 +236,37 @@ function Playbook({
   sections,
   toolkitHref,
   archiveHref,
+  buildTick,
 }: {
   picks: Picks;
   sections: Section[];
   toolkitHref: string;
   archiveHref: string;
+  buildTick: number;
 }) {
   const bandIdx = bandIndexFor(picks.size);
   const [currentIdx, setCurrentIdx] = useState(0);
   const sliderRef = useRef<HTMLDivElement>(null);
+  const headRef = useRef<HTMLElement>(null);
+
+  // Each Build / Rebuild bumps buildTick. Scroll the playbook head into
+  // view so the reader lands at "Built for you" instead of staying on
+  // the configurator. Honours prefers-reduced-motion.
+  useEffect(() => {
+    const el = headRef.current;
+    if (!el) return;
+    const prefersReduced =
+      typeof window !== "undefined" &&
+      window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
+    requestAnimationFrame(() => {
+      el.scrollIntoView({
+        behavior: prefersReduced ? "auto" : "smooth",
+        block: "start",
+      });
+    });
+    // Also reset to chapter 1 on a fresh build.
+    setCurrentIdx(0);
+  }, [buildTick]);
 
   // If the picks change and the new ranking has fewer sections than
   // currentIdx points at, snap back to 0.
@@ -285,7 +317,7 @@ function Playbook({
 
   return (
     <article className="playbook" aria-live="polite">
-      <header className="playbook-head">
+      <header className="playbook-head" ref={headRef}>
         <span className="playbook-slug">Built for you</span>
         <h2 className="playbook-title">
           <em>Your</em> comms blueprint
