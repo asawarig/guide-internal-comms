@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import type { Part, Section } from "../content/guide";
 import {
   bandIndexFor,
@@ -233,6 +233,55 @@ function Playbook({
   archiveHref: string;
 }) {
   const bandIdx = bandIndexFor(picks.size);
+  const [currentIdx, setCurrentIdx] = useState(0);
+  const sliderRef = useRef<HTMLDivElement>(null);
+
+  // If the picks change and the new ranking has fewer sections than
+  // currentIdx points at, snap back to 0.
+  useEffect(() => {
+    if (currentIdx > sections.length - 1) setCurrentIdx(0);
+  }, [sections.length, currentIdx]);
+
+  const current = sections[currentIdx];
+  const atStart = currentIdx === 0;
+  const atEnd = currentIdx === sections.length - 1;
+
+  function go(delta: number) {
+    const next = currentIdx + delta;
+    if (next < 0 || next >= sections.length) return;
+    setCurrentIdx(next);
+    // Scroll the slider's top into view so the reader lands on the new
+    // chapter's header, not somewhere mid-way.
+    requestAnimationFrame(() => {
+      sliderRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+  }
+
+  function jumpTo(idx: number) {
+    if (idx === currentIdx) return;
+    setCurrentIdx(idx);
+    requestAnimationFrame(() => {
+      sliderRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+  }
+
+  // Keyboard navigation when the slider is in view and the active
+  // element isn't an input/textarea/button.
+  useEffect(() => {
+    function onKey(e: KeyboardEvent) {
+      const tag = (document.activeElement?.tagName ?? "").toLowerCase();
+      if (tag === "input" || tag === "textarea" || tag === "select") return;
+      if (e.key === "ArrowLeft") {
+        e.preventDefault();
+        go(-1);
+      } else if (e.key === "ArrowRight") {
+        e.preventDefault();
+        go(+1);
+      }
+    }
+    document.addEventListener("keydown", onKey);
+    return () => document.removeEventListener("keydown", onKey);
+  }, [currentIdx, sections.length]);
 
   return (
     <article className="playbook" aria-live="polite">
@@ -258,71 +307,124 @@ function Playbook({
         </div>
       </header>
 
-      <ol className="chapters">
-        {sections.map((s, i) => (
-          <li className="chapter" key={s.id} id={`playbook-${s.id}`}>
-            <aside className="chapter-numeral" aria-hidden="true">
-              {marginNumeral(i)}
-            </aside>
-            <div className="chapter-body">
-              <span className="chapter-slug">No. {i + 1} · {s.title}</span>
-              <h3 className="chapter-title">{s.title}</h3>
-              <p className="chapter-rationale">
-                <span className="chapter-rationale-label">Why for you.</span>{" "}
-                {rationaleFor(s.id, picks)}
-              </p>
-              <blockquote className="chapter-pull">
-                <span className="chapter-pull-mark">&ldquo;</span>
-                <span dangerouslySetInnerHTML={{ __html: pullQuoteOf(s) }} />
-                <span className="chapter-pull-mark chapter-pull-mark-close">&rdquo;</span>
-              </blockquote>
-              <p className="chapter-prose chapter-prose-drop" dangerouslySetInnerHTML={{ __html: s.why }} />
+      <nav className="chapter-tabs" aria-label="Jump to section">
+        <div className="chapter-tabs-track">
+          {sections.map((s, i) => (
+            <button
+              key={s.id}
+              type="button"
+              className={`chapter-tab ${i === currentIdx ? "chapter-tab-active" : ""}`}
+              onClick={() => jumpTo(i)}
+              aria-current={i === currentIdx ? "page" : undefined}
+            >
+              <span className="chapter-tab-num">{marginNumeral(i)}</span>
+              <span className="chapter-tab-title">{s.title}</span>
+            </button>
+          ))}
+        </div>
+      </nav>
 
-              <div className="chapter-grid">
-                <div>
-                  <span className="chapter-sub">At your size</span>
-                  <p>
-                    <span className="chapter-size-tag">{s.bands[bandIdx].range}</span>{" "}
-                    {s.bands[bandIdx].body}
-                  </p>
-                </div>
-                <div>
-                  <span className="chapter-sub">What good looks like</span>
-                  <p dangerouslySetInnerHTML={{ __html: s.whatGood }} />
-                </div>
+      <div className="chapter-slider" ref={sliderRef}>
+        <article
+          className="chapter"
+          key={current.id}
+          id={`playbook-${current.id}`}
+        >
+          <aside className="chapter-numeral" aria-hidden="true">
+            {marginNumeral(currentIdx)}
+          </aside>
+          <div className="chapter-body">
+            <span className="chapter-slug">No. {currentIdx + 1} of {sections.length} · {current.title}</span>
+            <h3 className="chapter-title">{current.title}</h3>
+            <p className="chapter-rationale">
+              <span className="chapter-rationale-label">Why for you.</span>{" "}
+              {rationaleFor(current.id, picks)}
+            </p>
+            <blockquote className="chapter-pull">
+              <span className="chapter-pull-mark">&ldquo;</span>
+              <span dangerouslySetInnerHTML={{ __html: pullQuoteOf(current) }} />
+              <span className="chapter-pull-mark chapter-pull-mark-close">&rdquo;</span>
+            </blockquote>
+            <p className="chapter-prose chapter-prose-drop" dangerouslySetInnerHTML={{ __html: current.why }} />
+
+            <div className="chapter-grid">
+              <div>
+                <span className="chapter-sub">At your size</span>
+                <p>
+                  <span className="chapter-size-tag">{current.bands[bandIdx].range}</span>{" "}
+                  {current.bands[bandIdx].body}
+                </p>
               </div>
-
-              <div className="chapter-mistake">
-                <span className="chapter-sub">Common mistake</span>
-                <p dangerouslySetInnerHTML={{ __html: s.mistake }} />
-              </div>
-
-              <div className="chapter-takeaway">
-                <span className="chapter-sub">Take this with you</span>
-                <h4>{s.takeAwayTitle}</h4>
-                {s.takeAwayBlocks.slice(0, 2).map((block) => (
-                  <div key={block.subheading} className="chapter-take-block">
-                    <p className="chapter-take-sub">{block.subheading}</p>
-                    {block.intro && <p>{block.intro}</p>}
-                    {block.items && (
-                      <ul>
-                        {block.items.slice(0, 6).map((item) => (
-                          <li key={item}>{item}</li>
-                        ))}
-                      </ul>
-                    )}
-                  </div>
-                ))}
-                {s.takeAwayBlocks.length > 2 && (
-                  <p className="chapter-take-more">
-                    <a href={`${archiveHref}#${s.id}`}>Read the full section →</a>
-                  </p>
-                )}
+              <div>
+                <span className="chapter-sub">What good looks like</span>
+                <p dangerouslySetInnerHTML={{ __html: current.whatGood }} />
               </div>
             </div>
-          </li>
-        ))}
-      </ol>
+
+            <div className="chapter-mistake">
+              <span className="chapter-sub">Common mistake</span>
+              <p dangerouslySetInnerHTML={{ __html: current.mistake }} />
+            </div>
+
+            <div className="chapter-takeaway">
+              <span className="chapter-sub">Take this with you</span>
+              <h4>{current.takeAwayTitle}</h4>
+              {current.takeAwayBlocks.slice(0, 2).map((block) => (
+                <div key={block.subheading} className="chapter-take-block">
+                  <p className="chapter-take-sub">{block.subheading}</p>
+                  {block.intro && <p>{block.intro}</p>}
+                  {block.items && (
+                    <ul>
+                      {block.items.slice(0, 6).map((item) => (
+                        <li key={item}>{item}</li>
+                      ))}
+                    </ul>
+                  )}
+                </div>
+              ))}
+              {current.takeAwayBlocks.length > 2 && (
+                <p className="chapter-take-more">
+                  <a href={`${archiveHref}#${current.id}`}>Read the full section →</a>
+                </p>
+              )}
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <nav className="chapter-nav" aria-label="Section navigation">
+        <button
+          type="button"
+          className="chapter-nav-btn chapter-nav-prev"
+          onClick={() => go(-1)}
+          disabled={atStart}
+        >
+          <span aria-hidden="true">←</span>
+          <span className="chapter-nav-label">
+            <span className="chapter-nav-label-small">Previous</span>
+            {!atStart && (
+              <span className="chapter-nav-label-title">{sections[currentIdx - 1].title}</span>
+            )}
+          </span>
+        </button>
+        <span className="chapter-nav-count">
+          {marginNumeral(currentIdx)} / {marginNumeral(sections.length - 1)}
+        </span>
+        <button
+          type="button"
+          className="chapter-nav-btn chapter-nav-next"
+          onClick={() => go(+1)}
+          disabled={atEnd}
+        >
+          <span className="chapter-nav-label chapter-nav-label-right">
+            <span className="chapter-nav-label-small">Next</span>
+            {!atEnd && (
+              <span className="chapter-nav-label-title">{sections[currentIdx + 1].title}</span>
+            )}
+          </span>
+          <span aria-hidden="true">→</span>
+        </button>
+      </nav>
 
       <section className="playbook-weekahead">
         <span className="playbook-slug">The week ahead</span>
