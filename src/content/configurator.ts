@@ -54,12 +54,12 @@ export const PRIORITY_OPTIONS: { value: Priority; label: string; hint: string }[
   {
     value: "alignment",
     label: "Alignment",
-    hint: "Everyone pointing the same way.",
+    hint: "Everyone's pointing the same way.",
   },
   {
     value: "focus",
     label: "Focus",
-    hint: "Fewer interruptions, more deep work.",
+    hint: "Fewer interruptions; more deep work.",
   },
   {
     value: "speed",
@@ -69,17 +69,17 @@ export const PRIORITY_OPTIONS: { value: Priority; label: string; hint: string }[
   {
     value: "transparency",
     label: "Transparency",
-    hint: "What's decided, and why, is visible.",
+    hint: "What's decided, and why, is visible to the people living with it.",
   },
   {
     value: "burnout",
     label: "Burnout",
-    hint: "Comms is adding to the load.",
+    hint: "Comms is adding to the load, not relieving it.",
   },
   {
     value: "onboarding",
     label: "Onboarding",
-    hint: "New hires ramp without draining a manager.",
+    hint: "New hires can ramp without draining a manager.",
   },
 ];
 
@@ -204,79 +204,111 @@ export function rationaleFor(sectionId: string, picks: Picks): string {
     picks.workMode !== "office" || picks.geography !== "india";
 
   if (sectionId === "all-hands") {
-    if (chosen.includes("alignment")) return "You said alignment is the thing to fix. The all-hands is the single lever that moves it.";
-    if (chosen.includes("transparency")) return "Transparency starts in the room where decisions get named. For you, that's the all-hands.";
-    return `At ${sizePhrase(picks.size)}, the all-hands sets what everyone else can echo for the week.`;
+    if (chosen.includes("alignment"))
+      return "If alignment is what you're trying to put right, the all-hands is the lever that moves it furthest, because it's the one meeting where everyone's in the room at the same time hearing the same thing from the same person.";
+    if (chosen.includes("transparency"))
+      return "Transparency starts in the room where decisions get named out loud, and for a company your size that room is the all-hands, which is why it's the first thing to get right.";
+    return `At ${sizePhrase(picks.size)}, the all-hands is where the week's narrative gets set, and everything else (the Slack posts, the manager one-to-ones, the hallway chats) ends up echoing it, so it's worth over-investing in.`;
   }
+
   if (sectionId === "async-update") {
-    if (distributed) return "You're not all in one room. The async update is how work travels without a meeting.";
-    if (chosen.includes("speed")) return "You said speed. Written updates compress a 30-minute standup into a two-minute scan.";
-    return "Written daily updates give you a paper trail nobody has to chase for.";
+    if (distributed)
+      return "You're not all sitting in one room, which means half the context travels in meetings nobody wants to double-book, so the written daily update is how work actually gets passed around the company.";
+    if (chosen.includes("speed"))
+      return "If speed is the thing you're after, a two-minute written update is the cheapest trade you can make: thirty minutes of standup disappear from everyone's calendar, and the record sticks around.";
+    return "A written daily update gives you the paper trail nobody has to go hunting for, and it costs each team member five minutes to produce.";
   }
+
   if (sectionId === "newsletter") {
-    if (chosen.includes("alignment")) return "You said alignment. A weekly round-up is the quiet backbone that reinforces what the all-hands said.";
-    return "A simple weekly round-up catches the people who missed the meeting without needing another one.";
+    if (chosen.includes("alignment"))
+      return "A weekly round-up is the backbone that lets the all-hands land a second time, catching the people who missed the meeting and the ones who caught it but have slept since.";
+    return "A simple weekly round-up catches the people who missed the meeting and reminds the ones who didn't, and it does so without asking anyone to put another thing on the calendar.";
   }
+
   if (sectionId === "slack-setup") {
-    if (chosen.includes("focus")) return "You said focus. Most of what breaks focus happens because channels have no rules.";
-    return "Channel discipline is the cheapest thing you can set up now that pays back for every hire after.";
+    if (chosen.includes("focus"))
+      return "If focus is the thing you're trying to protect, the first place to look is Slack, because almost everything that breaks focus is a channel with no agreed purpose and a notification setting nobody has thought about.";
+    return "Channel discipline is the cheapest fix available to you now, and it pays itself back for every hire you make after without anyone noticing.";
   }
+
   if (sectionId === "wiki") {
-    if (chosen.includes("onboarding")) return "You said onboarding. A real wiki is the only way new hires ramp without draining a manager.";
-    if (chosen.includes("transparency")) return "Transparency without a written source of truth is a culture claim, not a practice.";
-    if (distributed) return "You're distributed. The wiki is the one place everyone has equal access to.";
-    return "Decisions written down outlive the Slack thread they were made in.";
+    if (chosen.includes("onboarding"))
+      return "If onboarding keeps draining a senior manager, it's because the thing a new hire needs to read on day one doesn't exist, and the wiki is where that thing lives.";
+    if (chosen.includes("transparency"))
+      return "A company that claims transparency without a written source of truth isn't being transparent so much as unusually fond of DMs, which is why the wiki section is top of your list.";
+    if (distributed)
+      return "Distributed teams can only be as aligned as their shared written record, which makes the wiki less of a nice-to-have and more of the thing that holds the company together.";
+    return "Decisions written down outlive the Slack thread they were made in, which is useful six months later when nobody can remember why you picked Notion over Confluence.";
   }
+
   if (sectionId === "announcements") {
-    if (chosen.includes("alignment")) return "You said alignment. Change comms is where alignment survives contact with a decision.";
-    if (chosen.includes("transparency")) return "You said transparency. This is the section about how decisions get told, in what order, to whom.";
-    return "A written announcement structure means change doesn't leak out through DMs.";
+    if (chosen.includes("alignment"))
+      return "Change comms is the place alignment goes to die if you let it, so having a written template for how a decision gets told, in what order, and to whom is the single biggest alignment fix available.";
+    if (chosen.includes("transparency"))
+      return "This is the section about how a decision travels from the room it was made in to the people it affects, which is to say, the mechanics of actually being transparent rather than just saying you are.";
+    return "A written template for how change gets announced is what stops decisions from leaking out through DMs, slack threads and three different versions of the story.";
   }
+
   if (sectionId === "whatsapp") {
-    return "You're in India. WhatsApp will be in the stack whether you plan it or not. Better to decide what belongs there.";
+    return "WhatsApp is going to end up in your comms stack whether you plan for it or not, so the useful thing is to decide now what belongs there and what belongs elsewhere, before the muscle memory sets in.";
   }
+
   if (sectionId === "meeting-norms") {
-    if (chosen.includes("burnout")) return "You said burnout. The calendar is where most of it lives.";
-    if (chosen.includes("focus")) return "You said focus. Meeting norms are the single biggest focus multiplier available.";
-    return "Written meeting norms are how you stop paying the invisible meeting tax.";
+    if (chosen.includes("burnout"))
+      return "If burnout is the thing you're worried about, start with the calendar: most of it lives there, and most of what lives there could be a doc, a Loom or a decision somebody already had the authority to make.";
+    if (chosen.includes("focus"))
+      return "Meeting norms are the single biggest focus multiplier available to you, because every hour you give back to the team is an hour that doesn't have to be won back from an interruption later.";
+    return "Written meeting norms are the only way to stop paying the invisible meeting tax, which is the one your calendar never itemises for you.";
   }
+
   if (sectionId === "dm-culture") {
-    if (chosen.includes("focus")) return "You said focus. DMs are the hidden cost: nobody sees them, so nothing moderates them.";
-    if (chosen.includes("transparency")) return "DMs are the inverse of transparency. The guidance here moves work back into the open.";
-    return "DMs scale badly. Set the norm before the muscle memory sets in.";
+    if (chosen.includes("focus"))
+      return "DMs are the hidden tax on focus because nobody can see how many you're sending, which means nobody self-regulates, which means your senior people have 40 conversations open at any given moment.";
+    if (chosen.includes("transparency"))
+      return "A DM is the inverse of transparency: the moment a conversation moves into one, the work stops being everyone's and starts being two people's, and the rest of the company has to go asking.";
+    return "DMs scale badly, so the time to agree a norm is now, before the muscle memory of 'I'll just send you a quick DM' sets in across the whole company.";
   }
+
   if (sectionId === "response-time") {
-    if (chosen.includes("burnout")) return "You said burnout. Response-time expectations are the single comms decision most tied to it.";
-    if (chosen.includes("focus")) return "You said focus. Response-time norms turn every ping into something you can defer.";
-    if (distributed) return "You're distributed. Timezones won't fix themselves — a written response policy will.";
-    return "Writing your response-time norms down takes an afternoon and saves a year of resentment.";
+    if (chosen.includes("burnout"))
+      return "Response-time expectations are the single comms decision most tied to burnout, because every unspoken 'reply by evening' adds up to a workweek that never really ends.";
+    if (chosen.includes("focus"))
+      return "Written response-time norms turn every ping into something you can defer with a clear conscience, which is the condition deep work actually depends on.";
+    if (distributed)
+      return "Timezones won't resolve themselves, which is why a written response-time policy is the one piece of comms hygiene distributed teams can't skip.";
+    return "Writing your response-time norms down takes an afternoon and saves a year of resentment, and the saving starts the first time somebody doesn't reply to a Saturday-night message.";
   }
+
   if (sectionId === "no-hello") {
-    if (chosen.includes("focus")) return "You said focus. The 'hi' message that doesn't say what it wants is the small, free fix.";
-    return "A one-line fix that costs nothing and compounds across every message in your workspace.";
+    if (chosen.includes("focus"))
+      return "The 'hi' message that doesn't say what it wants is the small, free fix that reads trivial on paper and compounds into something meaningful across a few hundred messages a week.";
+    return "This is the one-line fix that costs you nothing to put in place and compounds across every message in the workspace, in the way small norms always do when nobody has to think about them.";
   }
+
   if (sectionId === "feedback-loop") {
-    if (chosen.includes("onboarding")) return "You said onboarding. The feedback loop is what tells a new hire whether they're actually settling in.";
-    return "Without a feedback loop, you're guessing about how people feel. The guesses are usually wrong.";
+    if (chosen.includes("onboarding"))
+      return "Without a feedback loop, a new hire can look perfectly fine from the outside for six weeks and still be drowning on the inside without ever saying so, which is how good people leave early and nobody saw it coming.";
+    return "Without a feedback loop you're guessing at how the team feels, and the guesses are usually wrong in the direction most convenient to the person making them.";
   }
-  return "This one belongs on your list given your picks.";
+
+  return "This one belongs on your list given your picks, and the full section goes into why in some depth.";
 }
 
 // A one-line this-week action for each section, used in the summary checklist.
 export function thisWeekFor(sectionId: string, picks: Picks): string {
   const map: Record<string, string> = {
-    "all-hands": `Lock the next all-hands at a cadence that matches ${sizePhrase(picks.size)}, with a 24-hour-ahead agenda.`,
-    "async-update": "Pick one team to pilot a written daily update for two weeks. Keep the format minimal.",
-    newsletter: "Draft the first weekly round-up. Three sections. Fifteen minutes to write, two minutes to read.",
-    "slack-setup": "Rename your top five channels. Pin a one-line charter in each.",
-    wiki: "Create a 'Decisions' page in your wiki. Backfill the last three decisions this week.",
-    announcements: "Draft an announcement template with the five sections: what, why, who, when, where to ask.",
-    whatsapp: "Decide the one thing WhatsApp is for. Say it out loud at the next all-hands.",
-    "meeting-norms": "Audit your calendar for one week. Cancel anything with no agenda and no owner.",
-    "dm-culture": "Write the DM norm — one paragraph — and post it in your #general.",
-    "response-time": "Publish response-time expectations: same-day, next-day, 24–48 hours. Three sentences, no more.",
-    "no-hello": "Add 'no hello' to onboarding and the #general channel description.",
-    "feedback-loop": "Run one skip-level this week. Ask: what's on your mind that nobody has heard yet?",
+    "all-hands": `Put the next all-hands on the calendar at a cadence that matches ${sizePhrase(picks.size)}, and send the agenda 24 hours ahead so people turn up having actually read it.`,
+    "async-update": "Pick one team to pilot a written daily update for a fortnight, keep the format to three lines, and let the paper trail do the talking.",
+    newsletter: "Write the first weekly round-up at the end of the week: three sections, fifteen minutes to draft, two minutes to read, and nothing nobody asked for.",
+    "slack-setup": "Rename your five busiest channels so a new joiner can tell what each one is for, and pin a one-line charter at the top of each.",
+    wiki: "Create a 'Decisions' page in the wiki and backfill the last three decisions you made this quarter, with a date and the name of the person who made the call.",
+    announcements: "Draft an announcement template that covers the five sections every announcement should answer: what's changing, why now, who's affected, when it happens, and where to put the questions.",
+    whatsapp: "Decide the one thing WhatsApp is actually for in your company, write it down somewhere people will see it, and say it out loud at the next all-hands.",
+    "meeting-norms": "Audit one week of your calendar end to end, and cancel anything that doesn't have a written agenda, a named owner, and a decision it's trying to reach.",
+    "dm-culture": "Write the DM norm as a single paragraph (what belongs in a DM, what doesn't) and post it in your #general so the whole company can see it was said once.",
+    "response-time": "Publish three sentences on response-time expectations (same-day for critical, next-day for the rest, 24 to 48 hours for anything async), and then stop pinging people on Saturdays.",
+    "no-hello": "Add the 'no hello' rule to the onboarding doc and to the description on your #general channel, and let it do its work.",
+    "feedback-loop": "Run one skip-level this week with the question 'what's on your mind that nobody above you has heard yet', and resist the urge to defend anything you hear.",
   };
-  return map[sectionId] ?? "Open the full section in the guide and pick the first checklist item.";
+  return map[sectionId] ?? "Open the full section in the guide and work the first checklist item on the page.";
 }
