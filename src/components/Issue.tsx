@@ -81,7 +81,9 @@ export default function Issue({ parts, archiveHref, toolkitHref }: Props) {
             Build <em>your</em> blueprint
           </h2>
           <p className="config-standfirst">
-            Five picks. We turn them into the comms playbook you'd actually run next week.
+            Give us five things about the company you're running, and we'll put
+            together the internal-comms playbook a thoughtful founder with a
+            free weekend would have written for you themselves.
           </p>
         </div>
 
@@ -131,7 +133,7 @@ export default function Issue({ parts, archiveHref, toolkitHref }: Props) {
           </ConfigRow>
 
           <ConfigRow
-            label={`What are you trying to fix? (pick 1–3)`}
+            label={`What are you trying to fix? (pick one, two, or three)`}
             hint={`${priorities.length} of 3 picked`}
           >
             {PRIORITY_OPTIONS.map((opt) => (
@@ -323,8 +325,8 @@ function Playbook({
           <em>Your</em> comms blueprint
         </h2>
         <p className="playbook-standfirst">
-          A {stagePhrase(picks.stage)}, {sizePhrase(picks.size)}, {modePhrase(picks.workMode)}, {geoPhrase(picks.geography)} outfit. Here are the {sections.length}{" "}
-          sections of the guide that matter most for your week.
+          A {stagePhrase(picks.stage)}, {sizePhrase(picks.size)}, {modePhrase(picks.workMode)}, {geoPhrase(picks.geography)} outfit, which puts {sections.length}{" "}
+          of the guide's twelve sections squarely on your desk for the week in front of you.
         </p>
         <div className="playbook-byline">
           <span>From the Plum editorial desk</span>
@@ -460,7 +462,7 @@ function Playbook({
 
       <section className="playbook-weekahead">
         <span className="playbook-slug">The week ahead</span>
-        <h3>Pick one. <em>Start Monday.</em></h3>
+        <h3>Pick one of these, do it on <em>Monday</em>, and leave the rest to another week.</h3>
         <ol>
           {sections.map((s) => (
             <li key={s.id}>
@@ -474,12 +476,12 @@ function Playbook({
       <section className="playbook-closer">
         <div>
           <h3>Take the toolkit</h3>
-          <p>Every checklist and script from the guide in one editable Word document. Covers the whole library, not just your picks. Handy to send around a team.</p>
+          <p>Every checklist, template and script from the guide packed into one editable Word document, covering the whole library rather than just your picks, so you can hand it to a new ops hire and let them work out which parts of it apply to the company they've just joined.</p>
           <a className="btn btn-primary" href={toolkitHref}>Download the full toolkit (.docx)</a>
         </div>
         <div>
           <h3>Browse the library</h3>
-          <p>Twelve sections, every band, every take-away.</p>
+          <p>Twelve sections in long form, every size band, every take-away, for when you want to read sideways through the guide rather than straight through the Blueprint lens.</p>
           <a className="btn btn-ghost" href={archiveHref}>Open the full guide →</a>
         </div>
       </section>
@@ -489,18 +491,18 @@ function Playbook({
 
 function pullQuoteOf(s: Section): string {
   const quotes: Record<string, string> = {
-    "all-hands": "Below a certain size, it's a conversation. Above it, it's a broadcast.",
-    "async-update": "A written daily update is the two-minute standup you don't attend.",
-    newsletter: "A round-up is the quiet backbone that reinforces what the all-hands said.",
-    "slack-setup": "Channel discipline is the cheapest thing you can set up now.",
-    wiki: "Decisions written down outlive the Slack thread they were made in.",
-    announcements: "Change doesn't leak out through DMs if you've written how it goes.",
-    whatsapp: "Decide what WhatsApp is for before it decides for you.",
-    "meeting-norms": "The invisible meeting tax is the one your calendar never bills you.",
-    "dm-culture": "DMs are the inverse of transparency. Keep the work in the open.",
-    "response-time": "Writing your response-time norms down takes an afternoon and saves a year of resentment.",
-    "no-hello": "A one-line fix that compounds across every message in your workspace.",
-    "feedback-loop": "Without a loop, you're guessing. The guesses are usually wrong.",
+    "all-hands": "Below a certain size an all-hands is a conversation, above it a broadcast, and nobody tells you when you've crossed the line.",
+    "async-update": "A written daily update is the two-minute standup you never had to turn up for.",
+    newsletter: "A round-up is the backbone that lets the all-hands land twice, for the people who missed it and the ones who caught it but have slept since.",
+    "slack-setup": "Channel discipline is the cheapest thing you can set up now that pays itself back for every hire you make after.",
+    wiki: "Decisions written down outlive the Slack thread they were made in, which is useful six months later when nobody can remember why you picked Notion.",
+    announcements: "If you've written down how a decision gets announced, it stops leaking out through DMs, slack threads and three different versions of the story.",
+    whatsapp: "Decide what WhatsApp is for before it decides for you, because it will, and the muscle memory sets in faster than you think.",
+    "meeting-norms": "The invisible meeting tax is the one your calendar never itemises for you, which is why it stays invisible, and why it compounds.",
+    "dm-culture": "A DM is the inverse of transparency, which is to say the work stops being everyone's the moment it moves into one.",
+    "response-time": "Writing your response-time norms down takes an afternoon and saves a year of resentment, and the saving starts the first time somebody doesn't reply to a Saturday-night message.",
+    "no-hello": "A one-line fix that costs nothing to put in and compounds across every message in the workspace, in the way small norms always do.",
+    "feedback-loop": "Without a feedback loop you're guessing at how the team feels, and the guesses are usually wrong in the direction most convenient to the person making them.",
   };
   return quotes[s.id] ?? s.mistake.replace(/<[^>]+>/g, "");
 }
