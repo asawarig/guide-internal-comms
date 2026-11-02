@@ -33,16 +33,27 @@
   --sev-pink:  #FFD9DC;
   --sev-coral: #FF9FA8;
 
-  /* Soft teal accent — editorial colour for the Blueprint.
-     Used for pull quotes, marginalia, big numerals, selected chips.
-     Legacy --ochre-* aliases map to teal so older rules still resolve
-     until the full sweep lands. */
-  --teal: #6FA3A1;
-  --teal-deep: #4B807E;
-  --teal-wash: #CFE1DF;
-  --teal-tint: #E8F0EF;
+  /* Blueprint editorial accent = plum-red. The accent used for
+     mastheads, chapter numerals, pull-quote marks, the active chip
+     fill and the start-callout left-rule.
+     The old --teal-* and --ochre-* tokens still resolve to legacy
+     colour values so any rule not yet rewritten keeps rendering until
+     the sweep is complete. */
   --ink: #1A0B14;
 
+  --accent-teal:         #0F6E56;
+  --accent-teal-light:   #E6F5EF;
+  --accent-blue:         #185FA5;
+  --accent-blue-light:   #E6F1FB;
+  --accent-amber:        #BA7517;
+  --accent-amber-light:  #FAEEDA;
+  --accent-purple:       #534AB7;
+  --accent-purple-light: #EEEDFE;
+
+  --teal: var(--plum-red);
+  --teal-deep: var(--plum-red-deep);
+  --teal-wash: var(--sev-blush);
+  --teal-tint: var(--cream-deep);
   --ochre: var(--teal);
   --ochre-deep: var(--teal-deep);
   --ochre-wash: var(--teal-wash);
@@ -51,8 +62,10 @@
   --shadow-cta: 0 1px 0 rgba(58, 14, 43, 0.03), 0 1px 3px rgba(58, 14, 43, 0.04), 0 8px 24px -12px rgba(58, 14, 43, 0.08);
   --shadow-inset: inset 0 0 0 1px rgba(58, 14, 43, 0.04);
 
-  --font-display: "GT Alpina", "Iowan Old Style", Georgia, "Times New Roman", serif;
-  --font-sans: "Passenger Sans", "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --r-card: 7px;
+
+  --font-display: "GT Alpina", "Fraunces", "Iowan Old Style", Georgia, "Times New Roman", serif;
+  --font-sans: "Passenger Sans", "Mulish", "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
 
   --wrap-marketing: 1200px;
   --wrap-editorial: 960px;
@@ -1354,121 +1367,86 @@ p {
    Masthead, hero spread, configurator, playbook spread.
    ============================================================ */
 
+/* Full-bleed plum-red hero. Matches the Plum library masthead pattern. */
 .masthead {
-  max-width: 1240px;
+  background: var(--plum-red);
+  padding: clamp(48px, 8vw, 96px) clamp(20px, 5vw, 64px) clamp(48px, 6vw, 72px);
+}
+
+.masthead-inner {
+  max-width: 820px;
   margin: 0 auto;
-  padding: clamp(28px, 5vw, 56px) var(--gutter) 0;
 }
 
-.masthead-top {
+.masthead-eyebrow {
   display: flex;
-  justify-content: space-between;
-  gap: 16px;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+  font-family: var(--font-sans);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
-  letter-spacing: 0.18em;
-  font-size: 11px;
-  color: var(--fg-muted);
+  color: var(--fg-on-red);
+  opacity: 0.7;
 }
 
-.masthead-slug-right { text-align: right; }
-
-.masthead-wordmark {
-  display: flex;
-  align-items: baseline;
-  justify-content: center;
-  gap: clamp(12px, 2vw, 24px);
-  margin: clamp(20px, 4vw, 36px) 0 clamp(10px, 2vw, 20px);
-  font-family: var(--font-display);
-  font-weight: 400;
-  line-height: 0.9;
-  color: var(--ink);
-  letter-spacing: -0.045em;
+.masthead-eyebrow-rule {
+  display: inline-block;
+  width: 28px;
+  height: 1px;
+  background: var(--fg-on-red);
+  opacity: 0.5;
 }
 
-.masthead-wordmark-title {
-  text-align: center;
-  margin-bottom: clamp(14px, 2.6vw, 24px);
-}
-
+.masthead h1,
 .masthead-title {
   font-family: var(--font-display);
+  font-size: clamp(34px, 6vw, 62px);
   font-weight: 400;
-  font-size: clamp(44px, 8.5vw, 108px);
-  line-height: 0.95;
-  letter-spacing: -0.045em;
-  color: var(--ink);
-  margin: 0;
-  max-width: 1000px;
+  line-height: 1.08;
+  letter-spacing: -0.03em;
+  color: var(--fg-on-red);
+  margin: 0 0 20px;
 }
 
+.masthead h1 em,
 .masthead-title em {
   font-style: italic;
-  color: var(--teal-deep);
+  font-weight: 300;
+  color: var(--fg-on-red);
 }
 
-.masthead-plus {
-  font-size: clamp(96px, 20vw, 240px);
-  color: var(--teal);
-  line-height: 0.85;
-  transform: translateY(-0.08em);
-  text-shadow: 0 2px 0 rgba(26, 11, 20, 0.03);
+.masthead-sub {
+  font-family: var(--font-sans);
+  font-size: clamp(14px, 1.8vw, 16px);
+  line-height: 1.65;
+  color: var(--fg-on-red);
+  opacity: 0.78;
+  max-width: 560px;
+  margin: 0 0 32px;
 }
 
-.masthead-name {
-  font-size: clamp(72px, 15vw, 180px);
-  font-style: italic;
-}
-
-.masthead-tagline {
-  max-width: 680px;
-  margin: 0 auto clamp(16px, 3vw, 28px);
-  text-align: center;
-  font-family: var(--font-display);
-  font-size: clamp(18px, 2vw, 22px);
-  line-height: 1.35;
-  color: var(--fg-1);
-}
-
-.masthead-tagline em {
-  color: var(--ochre-deep);
-  font-style: italic;
-}
-
-.masthead-rule {
-  height: 1px;
-  background: var(--ink);
-  margin: clamp(16px, 3vw, 24px) 0 10px;
-  position: relative;
-}
-
-.masthead-rule::before,
-.masthead-rule::after {
-  content: "";
-  position: absolute;
-  top: -3px;
-  width: 7px;
-  height: 7px;
-  background: var(--ochre);
-  transform: rotate(45deg);
-}
-.masthead-rule::before { left: 0; }
-.masthead-rule::after { right: 0; }
-
-.masthead-bottom {
+.masthead-meta {
   display: flex;
-  justify-content: space-between;
-  gap: 16px;
-  text-transform: uppercase;
-  letter-spacing: 0.14em;
-  font-size: 10.5px;
-  color: var(--fg-muted);
-  padding-bottom: 4px;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(255, 250, 242, 0.2);
 }
 
-@media (max-width: 640px) {
-  .masthead-top,
-  .masthead-bottom { font-size: 9.5px; letter-spacing: 0.1em; }
-  .masthead-bottom { flex-direction: column; align-items: center; text-align: center; }
+.masthead-meta span {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--fg-on-red);
+  opacity: 0.6;
+  background: rgba(255, 250, 242, 0.08);
+  border: 0.5px solid rgba(255, 250, 242, 0.2);
+  padding: 4px 10px;
 }
 
 /* Hero spread — two columns like a magazine cover opener. */
@@ -1624,15 +1602,15 @@ p {
 /* The configurator island. */
 
 .issue-shell {
-  max-width: 1240px;
+  max-width: 900px;
   margin: clamp(40px, 6vw, 80px) auto 0;
-  padding: 0 var(--gutter);
+  padding: 0 clamp(20px, 5vw, 64px);
 }
 
 .configurator {
-  background: #FFFDF5;
-  border: 1px solid var(--ochre-wash);
-  border-radius: 2px;
+  background: var(--cream);
+  border: 1px solid var(--line-lavender);
+  border-radius: var(--r-card, 7px);
   padding: clamp(24px, 4vw, 48px);
   position: relative;
 }
@@ -1659,9 +1637,10 @@ p {
 .config-eyebrow {
   display: inline-block;
   text-transform: uppercase;
-  letter-spacing: 0.18em;
-  font-size: 11px;
-  color: var(--ochre-deep);
+  letter-spacing: 0.08em;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--plum-red);
   margin-bottom: 10px;
 }
 
@@ -1737,42 +1716,45 @@ p {
 
 .chip {
   background: var(--cream);
-  border: 1px solid rgba(26, 11, 20, 0.12);
-  border-radius: 999px;
-  padding: 8px 14px;
+  border: 0.5px solid var(--plum-red);
+  border-radius: 0;
+  padding: 10px 14px;
   font-family: var(--font-sans);
-  font-size: 14px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
   color: var(--fg-1);
   cursor: pointer;
-  transition: all 150ms ease-out;
+  transition: background 150ms ease-out, color 150ms ease-out;
   display: inline-flex;
   flex-direction: column;
-  gap: 2px;
+  gap: 3px;
   text-align: left;
   line-height: 1.3;
+  min-height: 42px;
 }
 
 .chip:hover:not(:disabled) {
-  border-color: var(--ochre);
-  background: var(--ochre-tint);
+  background: var(--sev-blush);
 }
 
 .chip-selected,
 .chip-selected:hover {
-  background: var(--ochre);
-  border-color: var(--ochre);
-  color: var(--cream);
+  background: var(--plum-red);
+  color: var(--fg-on-red);
 }
 
 .chip-multi {
-  border-radius: 10px;
   padding: 10px 14px;
 }
 
 .chip-hint {
-  font-size: 11px;
+  font-size: 10.5px;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  text-transform: none;
   color: var(--fg-muted);
-  font-weight: 400;
 }
 
 .chip-selected .chip-hint {
@@ -1953,14 +1935,14 @@ p {
 .chapter-numeral {
   font-family: var(--font-display);
   font-style: italic;
-  font-size: clamp(44px, 5.4vw, 76px);
+  font-weight: 300;
+  font-size: clamp(56px, 8vw, 96px);
   line-height: 0.9;
-  color: var(--teal);
+  color: var(--plum-red);
   text-align: right;
-  letter-spacing: -0.03em;
+  letter-spacing: -0.04em;
   user-select: none;
-  padding-top: 14px;
-  opacity: 0.95;
+  padding-top: 8px;
   overflow: hidden;
   white-space: nowrap;
 }
@@ -1968,7 +1950,7 @@ p {
 @media (max-width: 720px) {
   .chapter-numeral {
     text-align: left;
-    font-size: 44px;
+    font-size: 56px;
     line-height: 0.95;
     padding-top: 0;
   }
@@ -1981,9 +1963,10 @@ p {
 .chapter-slug {
   display: inline-block;
   text-transform: uppercase;
-  letter-spacing: 0.18em;
-  font-size: 11px;
-  color: var(--ochre-deep);
+  letter-spacing: 0.08em;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--plum-red);
   margin-bottom: 8px;
 }
 
@@ -1998,20 +1981,21 @@ p {
 
 .chapter-rationale {
   font-size: 15px;
-  line-height: 1.55;
+  line-height: 1.65;
   color: var(--fg-2);
   margin: 0 0 24px;
-  padding: 14px 16px;
-  background: var(--ochre-tint);
-  border-left: 3px solid var(--ochre);
+  padding: 14px 18px;
+  background: var(--cream-deep);
+  border-left: 2px solid var(--plum-red);
+  border-radius: 0 var(--r-card, 7px) var(--r-card, 7px) 0;
 }
 
 .chapter-rationale-label {
   font-weight: 600;
-  color: var(--ochre-deep);
+  color: var(--fg-1);
   text-transform: uppercase;
   font-size: 11px;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.08em;
   margin-right: 6px;
 }
 
@@ -2029,7 +2013,7 @@ p {
 .chapter-pull-mark {
   font-family: var(--font-display);
   font-style: normal;
-  color: var(--ochre);
+  color: var(--plum-red);
   font-size: 1.4em;
   line-height: 0.6;
   padding: 0 2px;
@@ -2076,9 +2060,10 @@ p {
 
 .chapter-sub {
   text-transform: uppercase;
-  letter-spacing: 0.14em;
-  font-size: 10.5px;
-  color: var(--ochre-deep);
+  letter-spacing: 0.08em;
+  font-size: 11.5px;
+  font-weight: 600;
+  color: var(--fg-muted);
   display: block;
 }
 
@@ -2183,11 +2168,11 @@ p {
   left: 0;
   width: 48px;
   height: 3px;
-  background: var(--teal);
+  background: var(--plum-red);
 }
 
 .playbook-weekahead .playbook-slug {
-  color: var(--teal-deep);
+  color: var(--plum-red);
 }
 
 .playbook-weekahead h3 {
@@ -2200,7 +2185,7 @@ p {
 
 .playbook-weekahead h3 em {
   font-style: italic;
-  color: var(--teal-deep);
+  color: var(--plum-red);
 }
 
 .playbook-weekahead ol {
@@ -2232,9 +2217,10 @@ p {
 
 .playbook-weekahead ol li::before {
   content: counter(week, decimal-leading-zero);
-  color: var(--teal);
+  color: var(--plum-red);
   font-family: var(--font-display);
   font-style: italic;
+  font-weight: 300;
   font-size: 32px;
   line-height: 1;
   letter-spacing: -0.02em;
@@ -2257,7 +2243,7 @@ p {
 .weekahead-tag {
   font-family: var(--font-display);
   font-style: italic;
-  color: var(--teal-deep);
+  color: var(--plum-red);
   font-size: 17px;
   letter-spacing: -0.01em;
 }
@@ -2349,7 +2335,7 @@ p {
   overflow-x: auto;
   overflow-y: hidden;
   scrollbar-width: thin;
-  scrollbar-color: var(--teal-wash) transparent;
+  scrollbar-color: var(--sev-blush) transparent;
   -webkit-overflow-scrolling: touch;
 }
 
@@ -2358,7 +2344,7 @@ p {
 }
 
 .chapter-tabs::-webkit-scrollbar-thumb {
-  background: var(--teal-wash);
+  background: var(--sev-blush);
   border-radius: 3px;
 }
 
@@ -2410,7 +2396,7 @@ p {
 }
 
 .chapter-tab-active::after {
-  background: var(--teal);
+  background: var(--plum-red);
   height: 3px;
   bottom: -2px;
 }
@@ -2418,14 +2404,15 @@ p {
 .chapter-tab-num {
   font-family: var(--font-display);
   font-style: italic;
+  font-weight: 300;
   font-size: 15px;
-  color: var(--teal);
+  color: var(--plum-red);
   line-height: 1;
   letter-spacing: -0.01em;
 }
 
 .chapter-tab-active .chapter-tab-num {
-  color: var(--teal-deep);
+  color: var(--plum-red-deep);
 }
 
 .chapter-tab-title {
@@ -2479,8 +2466,8 @@ p {
 }
 
 .chapter-nav-btn:hover:not(:disabled) {
-  border-color: var(--teal);
-  color: var(--teal-deep);
+  border-color: var(--plum-red);
+  color: var(--plum-red-deep);
 }
 
 .chapter-nav-btn:disabled {
@@ -2490,7 +2477,7 @@ p {
 
 .chapter-nav-btn > span[aria-hidden="true"] {
   font-size: 18px;
-  color: var(--teal);
+  color: var(--plum-red);
   line-height: 1;
 }
 
@@ -2520,7 +2507,8 @@ p {
 .chapter-nav-label-title {
   font-family: var(--font-display);
   font-style: italic;
-  color: var(--teal-deep);
+  font-weight: 300;
+  color: var(--plum-red-deep);
   font-size: 15px;
   letter-spacing: -0.01em;
   overflow: hidden;
