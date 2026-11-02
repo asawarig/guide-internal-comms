@@ -1,0 +1,107 @@
+---
+import Base from "../../layouts/Base.astro";
+import Issue from "../../components/Issue.tsx";
+import { meta, parts } from "../../content/guide";
+
+const base = import.meta.env.BASE_URL.replace(/\/?$/, "/");
+const homeHref = base;
+const toolkitHref = `${base}${meta.toolkitFileName}`;
+const archiveHref = `${base}internal-communications/full/`;
+---
+
+<Base title="The Internal Comms Blueprint · a Plum guide">
+  <!-- Masthead -->
+  <header class="masthead" aria-label="Masthead">
+    <div class="masthead-inner">
+      <a href={homeHref} class="masthead-back">← Back to the Library</a>
+      <div class="masthead-eyebrow">
+        <span class="masthead-eyebrow-rule" aria-hidden="true"></span>
+        <span>Plum · Library · Internal comms</span>
+      </div>
+      <h1>
+        The <em>Internal Comms</em> Blueprint
+      </h1>
+      <p class="masthead-sub">
+        A thoughtful founder with a free weekend would have sat down and
+        written this for your team themselves; since none of you have one,
+        we've gone and done it.
+      </p>
+      <div class="masthead-meta">
+        <span>For founders, people success teams and heads of ops</span>
+        <span>Indian startups · 5 to 150 people</span>
+        <span>A build-your-own guide</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero spread -->
+  <section class="spread" aria-labelledby="cover-line">
+    <div class="spread-left">
+      <span class="spread-dept">What this is</span>
+      <h2 id="cover-line" class="spread-headline">
+        A comms playbook, <em>built around you</em>, in about <span class="spread-figure">90</span> seconds.
+      </h2>
+      <p class="spread-standfirst">
+        Nobody sits down to design the way their startup talks to itself; the
+        channels, the all-hands cadence, the response-time expectations that
+        decide whether a Tuesday morning is bearable all show up because
+        someone once needed somewhere to put a thing, and then everyone
+        copied them. The Blueprint is a chance to go back and decide, with
+        the research done for you, before the muscle memory sets in.
+      </p>
+      <ul class="spread-list">
+        <li><span>&#x2192;</span> Drawn from the full twelve-section Plum guide, cited back to primary sources.</li>
+        <li><span>&#x2192;</span> Tuned to your stage, headcount, work mode and the shape of the people doing it.</li>
+        <li><span>&#x2192;</span> Comes with a one-week action list to put you on the clock, and a .docx toolkit for the inevitable all-hands slide.</li>
+      </ul>
+    </div>
+    <aside class="spread-right" aria-label="What's inside">
+      <span class="spread-dept">What's inside</span>
+      <ul class="spread-contents">
+        <li><em>I.</em> The rituals: all-hands, async updates, weekly round-up</li>
+        <li><em>II.</em> The tools: Slack, docs, announcements, WhatsApp</li>
+        <li><em>III.</em> The norms: meetings, DMs, response time, feedback</li>
+        <li class="spread-contents-rule" aria-hidden="true"></li>
+        <li><em>IV.</em> How other companies do it</li>
+        <li><em>V.</em> The take-away pack: one .docx, twelve playbooks</li>
+      </ul>
+      <a class="spread-full-link" href={archiveHref}>
+        Prefer the whole library? <span>Browse all twelve sections →</span>
+      </a>
+    </aside>
+  </section>
+
+  <!-- Configurator + Playbook island -->
+  <div class="issue-shell">
+    <Issue parts={parts} archiveHref={archiveHref} toolkitHref={toolkitHref} client:load />
+  </div>
+
+  <!-- Colophon -->
+  <footer class="colophon" aria-label="Colophon">
+    <div class="colophon-row">
+      <span class="colophon-slug">About this guide</span>
+      <p>
+        <em>The Internal Comms Blueprint</em> is a tool from Plum's content
+        desk, built on top of the full twelve-section guide and tuned to the
+        five picks you make at the top of the page, with every stat it cites
+        traced back to a primary source rather than a secondhand summary of
+        one.
+      </p>
+    </div>
+    <div class="colophon-row">
+      <span class="colophon-slug">Credits</span>
+      <p>
+        Research and words: Plum editorial.<br />
+        Design: Plum web.<br />
+        Comms suggestions, grievances, counter-arguments: welcome, at the usual Plum address.
+      </p>
+    </div>
+    <div class="colophon-row">
+      <span class="colophon-slug">The rest of the library</span>
+      <p>
+        <a href={archiveHref}>Open the full guide →</a><br />
+        <a href={toolkitHref} download={meta.toolkitFileName}>Download the .docx toolkit →</a>
+      </p>
+    </div>
+  </footer>
+</Base>
