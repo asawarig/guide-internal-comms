@@ -2546,3 +2546,190 @@ p {
   .chapter-nav-label-title { display: none; }
 }
 
+
+/* ============================================================
+   THE PLUM LIBRARY home page: card grid + section head.
+   ============================================================ */
+
+.library {
+  background: var(--cream);
+  padding: clamp(60px, 8vw, 112px) 0;
+}
+
+.library-inner {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 0 clamp(20px, 5vw, 64px);
+}
+
+.library-head {
+  max-width: 640px;
+  margin: 0 0 clamp(40px, 5vw, 64px);
+}
+
+.library-slug {
+  display: inline-block;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--plum-red);
+  margin-bottom: 10px;
+}
+
+.library-title {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(32px, 4.4vw, 48px);
+  line-height: 1.08;
+  letter-spacing: -0.035em;
+  color: var(--fg-1);
+  margin: 0 0 12px;
+}
+
+.library-title em {
+  font-style: italic;
+  font-weight: 300;
+  color: var(--plum-red);
+}
+
+.library-sub {
+  font-family: var(--font-sans);
+  font-size: clamp(15px, 1.6vw, 17px);
+  line-height: 1.6;
+  color: var(--fg-2);
+  margin: 0;
+}
+
+/* Card grid. */
+
+.library-grid {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.library-card {
+  margin: 0;
+}
+
+.library-card-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  height: 100%;
+  padding: clamp(22px, 2.6vw, 32px);
+  background: var(--cream);
+  border: 1px solid var(--line-lavender);
+  border-radius: var(--r-card, 7px);
+  text-decoration: none;
+  transition: transform 180ms ease-out, box-shadow 180ms ease-out, border-color 180ms ease-out;
+}
+
+.library-card-live .library-card-inner:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-cta);
+  border-color: var(--plum-red);
+}
+
+.library-card-soon .library-card-inner {
+  opacity: 0.6;
+  cursor: not-allowed;
+  background: var(--cream-deep);
+}
+
+.library-card-tag {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--plum-red);
+}
+
+.library-card-soon .library-card-tag {
+  color: var(--fg-muted);
+}
+
+.library-card-title {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(24px, 2.8vw, 30px);
+  line-height: 1.08;
+  letter-spacing: -0.03em;
+  color: var(--fg-1);
+  margin: 0;
+}
+
+.library-card-title em {
+  font-style: italic;
+  font-weight: 300;
+  color: var(--plum-red);
+}
+
+.library-card-soon .library-card-title em {
+  color: var(--fg-muted);
+}
+
+.library-card-desc {
+  font-family: var(--font-sans);
+  font-size: 14.5px;
+  line-height: 1.6;
+  color: var(--fg-2);
+  margin: 0;
+  flex: 1;
+}
+
+.library-card-foot {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+  padding-top: 14px;
+  border-top: 1px solid var(--line-lavender-2);
+  margin-top: 4px;
+}
+
+.library-card-meta {
+  font-family: var(--font-sans);
+  font-size: 11.5px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--fg-muted);
+}
+
+.library-card-cta {
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--plum-red);
+}
+
+.library-card-cta-soon {
+  color: var(--fg-muted);
+}
+
+/* Back-to-the-Library link above sub-page mastheads. */
+
+.masthead-back {
+  display: inline-block;
+  font-family: var(--font-sans);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  color: var(--fg-on-red);
+  opacity: 0.7;
+  text-decoration: none;
+  margin-bottom: 24px;
+  transition: opacity 150ms ease-out;
+}
+
+.masthead-back:hover {
+  opacity: 1;
+  text-decoration: underline;
+}

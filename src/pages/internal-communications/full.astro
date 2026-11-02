@@ -1,20 +1,22 @@
 ---
-import Base from "../layouts/Base.astro";
-import Section from "../components/Section.astro";
-import PartArt from "../components/PartArt.astro";
-import ArrowRule from "../components/ArrowRule.astro";
-import TableOfContents from "../components/TableOfContents.astro";
-import HeadcountStack from "../components/HeadcountStack.tsx";
-import { companyExamples, intro, meta, parts, sources } from "../content/guide";
+import Base from "../../layouts/Base.astro";
+import Section from "../../components/Section.astro";
+import PartArt from "../../components/PartArt.astro";
+import ArrowRule from "../../components/ArrowRule.astro";
+import TableOfContents from "../../components/TableOfContents.astro";
+import HeadcountStack from "../../components/HeadcountStack.tsx";
+import { companyExamples, intro, meta, parts, sources } from "../../content/guide";
 
 const base = import.meta.env.BASE_URL.replace(/\/?$/, "/");
 const toolkitHref = `${base}${meta.toolkitFileName}`;
-const magazineHref = base;
+const magazineHref = `${base}internal-communications/`;
+const homeHref = base;
 ---
 
 <Base title="The full internal comms guide · Plum">
   <nav class="top-nav" aria-label="Sections">
     <div class="top-nav-inner">
+      <a href={homeHref} class="top-nav-back">← Library</a>
       <a href={magazineHref} class="top-nav-back">← back to the Blueprint</a>
       {
         parts.flatMap((part) =>
