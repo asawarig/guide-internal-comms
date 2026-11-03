@@ -35,7 +35,7 @@ jobs:
 
       - name: Build with GitHub Pages base path
         env:
-          BASE_PATH: /guide-internal-comms
+          BASE_PATH: /plum-library
           SITE_URL: https://asawarig.github.io
         run: npm run build
 
